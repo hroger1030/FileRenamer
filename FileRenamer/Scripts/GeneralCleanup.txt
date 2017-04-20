@@ -1,0 +1,99 @@
+# test file
+
+########################################################################
+
+#setCaseSensitive(false)
+#setLogChanges(false)
+#setLowerExtensions(false)
+#setPreserveExtension(false)
+#setRecursive(false)
+#setRemoveLeadingCharacter(false)
+#setRemoveSpace(false)
+#setRemoveURL(false)
+#setUseRegex(false)
+#setProcessDirectories(false)
+#setProcessFiles(false)
+#setCreatePlaylist(false)
+#setFixFileProperties(false)
+
+#setFileTypes(".txt")
+#setCase("No changes")
+#setFind("apple")
+#setReplace("pear")
+#setPrefix("foo")
+#setSuffix("bar")
+#setPath("c:\temp\")
+
+#replace("_"," ")
+
+########################################################################
+
+setLowerExtensions(true)
+SetProcessFiles(true)
+setFixFileProperties(true)
+setRemoveSpace(true)
+
+replace("[","(")
+replace("]",")")
+replace("_"," ")
+replace("--","-")
+replace(" VS. "," vs. ")
+remove("#")
+
+# file format corrections
+replace(".rar",".cbr")
+replace(".zip",".cbz")
+
+# volume
+replace(" Vol"," v")
+replace(" V1"," v1")
+replace(" V2"," v2")
+replace(" V3"," v3")
+replace(" V4"," v4")
+replace(" V5"," v5")
+replace(" V6"," v6")
+
+
+# limited series hints
+remove("of 2")
+remove("of 3")
+remove("of 4")
+remove("of 5")
+remove("of 6")
+remove("of 7")
+remove("of 8")
+remove("of 9")
+
+remove("of 02")
+remove("of 03")
+remove("of 04")
+remove("of 05")
+remove("of 06")
+remove("of 07")
+remove("of 08")
+remove("of 09")
+remove("of 10")
+remove("of 11")
+remove("of 12")
+
+# cover counts
+remove("2 covers")
+remove("3 covers")
+remove("4 covers")
+remove("5 covers")
+remove("two covers")
+remove("three covers")
+remove("both covers")
+
+# other cruft
+replace("(digital)","(Digital)")
+replace("(Digital-HD)","(Digital)")
+remove(" (Webrip)")
+remove("c2c")
+remove("noads")
+remove("()")
+remove(" (Fixed)")
+ 
+
+
+

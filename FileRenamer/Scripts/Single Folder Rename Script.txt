@@ -1,0 +1,128 @@
+# test file
+
+########################################################################
+
+#setCaseSensitive(false)
+#setLogChanges(false)
+#setLowerExtensions(false)
+#setPreserveExtension(false)
+#setRecursive(false)
+#setRemoveLeadingCharacter(false)
+#setRemoveSpace(false)
+#setRemoveURL(false)
+#setUseRegex(false)
+#setProcessDirectories(false)
+#setProcessFiles(false)
+#setCreatePlaylist(false)
+#setFixFileProperties(false)
+
+#setFileTypes(".txt")
+#setCase("No changes")
+#setFind("apple")
+#setReplace("pear")
+#setPrefix("foo")
+#setSuffix("bar")
+#setPath("c:\temp\")
+
+#replace("_"," ")
+
+########################################################################
+
+SetProcessFiles(true)
+setFixFileProperties(true)
+setRemoveSpace(true)
+
+replace("[","(")
+replace("]",")")
+replace("_"," ")
+replace("--","-")
+replace(" .VS "," .vs ")
+remove("#")
+
+# volume
+replace(" Vol"," v")
+replace(" V1"," v1")
+replace(" V2"," v2")
+replace(" V3"," v3")
+replace(" V4"," v4")
+replace(" V5"," v5")
+replace(" V6"," v6")
+
+# scanner punk names
+remove(" (digital-Empire)")
+remove(" (Nahga-Empire)")
+remove(" (digital-TheGroup)")
+remove(" (Kingpin-Empire)")
+remove(" (JK-Empire)")
+remove(" (Monafekk-Empire)")
+remove(" (Kryptonia-DCP)")
+remove(" (Minutemen-DTs)")
+remove(" (ActionComics-DCP)")
+remove(" (Greengiant-Dcp)")
+remove(" (Minutemen-Dizzy & Dangerous)")
+remove(" (Zone-Empire)")
+remove(" (Minutemen)")
+remove(" (Empire)")
+remove(" (BlackManta-Empire)")
+remove(" (The Last Kryptonian-Dcp)")
+remove(" (Minutemen-Phd)")
+remove(" (Megan-Empire)")
+
+# limited series hints
+remove("of 2")
+remove("of 3")
+remove("of 4")
+remove("of 5")
+remove("of 6")
+
+remove("of 02")
+remove("of 03")
+remove("of 04")
+remove("of 05")
+remove("of 06")
+
+# cover counts
+remove(" 2 covers")
+remove(" 3 covers")
+remove(" 4 covers")
+remove(" 5 covers")
+remove(" two covers")
+
+# other cruft
+replace("(digital)","(Digital)")
+replace("(Digital-HD)","(Digital)")
+remove(" (Webrip)")
+remove("c2c")
+remove("noads")
+remove(" ()")
+
+# years
+remove(" (1990)")
+remove(" (1991)")
+remove(" (1992)")
+remove(" (1993)")
+remove(" (1994)")
+remove(" (1995)")
+remove(" (1996)")
+remove(" (1997)")
+remove(" (1998)")
+remove(" (1999)")
+remove(" (2000)")
+remove(" (2001)")
+remove(" (2002)")
+remove(" (2003)")
+remove(" (2004)")
+remove(" (2005)")
+remove(" (2006)")
+remove(" (2007)")
+remove(" (2008)")
+remove(" (2009)")
+remove(" (2010)")
+remove(" (2011)")
+remove(" (2012)")
+remove(" (2013)")
+remove(" (2014)")
+remove(" (2015)")
+
+
+

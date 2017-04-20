@@ -1,0 +1,46 @@
+# test file
+
+########################################################################
+
+#setCaseSensitive(false)
+#setLogChanges(false)
+#setLowerExtensions(false)
+#setPreserveExtension(false)
+#setRecursive(false)
+#setRemoveLeadingCharacter(false)
+#setRemoveSpace(false)
+#setRemoveURL(false)
+#setUseRegex(false)
+#setProcessDirectories(false)
+#setProcessFiles(false)
+#setCreatePlaylist(false)
+#setFixFileProperties(false)
+
+#setFileTypes(".txt")
+#setCase("No changes")
+#setFind("apple")
+#setReplace("pear")
+#setPrefix("foo")
+#setSuffix("bar")
+#setPath("c:\temp\")
+
+#replace("_"," ")
+
+########################################################################
+
+SetProcessFiles(true)
+setUseRegex(false)
+setFixFileProperties(true)
+setRemoveSpace(true)
+setRecursive(false)
+#setLogChanges(true)
+
+replace("[","(")
+replace("]",")")
+
+setUseRegex(true)
+replace("\(.+?\)\s*"," ")
+
+
+
+
