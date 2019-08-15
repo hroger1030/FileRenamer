@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace FileRenamer
 {
@@ -35,9 +34,9 @@ namespace FileRenamer
 
         public cSettings()
         {
-            ChangeList      = new List<string>();
-            ErrorList       = new List<string>();
-            Case            = cFileRenamer.CASE_NO_CHANGE;
+            ChangeList = new List<string>();
+            ErrorList = new List<string>();
+            Case = cFileRenamer.CASE_NO_CHANGE;
         }
     }
 }
