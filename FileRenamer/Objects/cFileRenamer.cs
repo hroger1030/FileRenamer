@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 
-using DAL;
+using AutoCodeGenLibrary;
 
 namespace FileRenamer
 {
@@ -18,7 +19,6 @@ namespace FileRenamer
         public const string CASE_ALL_LOWER = "all lower case";
         public const string CASE_TITLE_CASE = "title case";
 
-
         public static void ProcessFolder(string path, cSettings settings)
         {
             try
@@ -28,19 +28,17 @@ namespace FileRenamer
                     string[] file_names = Directory.GetFiles(path);
 
                     Parallel.ForEach(file_names, new ParallelOptions { MaxDegreeOfParallelism = 8 }, file_name =>
-                   {
-                            // process files matching our filter criteria
-                            if (settings.FileTypes == FILE_FILTER_ALL_FILES || settings.FileTypes == Path.GetExtension(file_name))
-                       {
-                           ProcessFilename(file_name, settings);
-                       }
-                   });
+                    {
+                        // process files matching our filter criteria
+                        if (settings.FileTypes == FILE_FILTER_ALL_FILES || settings.FileTypes == Path.GetExtension(file_name))
+                            ProcessFilename(file_name, settings);
+                    });
                 }
 
                 // after all the files have been renamed, check and see if we need to build a playlist of .mp3 files in directory.
                 if (settings.CreatePlaylist)
                 {
-                    StringBuilder sb = new StringBuilder();
+                    var sb = new StringBuilder();
 
                     string[] music_files = Directory.GetFiles(path, "*.mp3");
 
@@ -52,7 +50,7 @@ namespace FileRenamer
                         foreach (string music_file in music_files)
                             sb.AppendLine(music_file.Replace(path + "\\", string.Empty));
 
-                        FileIo.WriteToFile(path + "\\" + playlist_name, sb.ToString());
+                        FileIo.RenameFile(path + "\\" + playlist_name, sb.ToString());
                         settings.ChangeList.Add("Created M3u file " + playlist_name);
                     }
                 }
@@ -488,6 +486,30 @@ namespace FileRenamer
                 File.SetAttributes(filePath, FileAttributes.Normal);
 
             File.WriteAllText(filePath, outputData);
+        }
+
+        /// <summary>
+        /// Gets all the file names in a directory path
+        /// </summary>
+        public static string[] BreakFilenames(string path, bool recursive)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+                throw new ArgumentException("Path cannot be null or empty");
+
+            var options = (recursive) ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+            var files = Directory.GetFiles(path, "*", options);
+            var output = new HashSet<string>();
+
+            foreach (var file in files)
+            {
+                var buffer = Path.GetFileName(file);
+                var fragments = buffer.Split(new char[] { '.', ' ', '-', '[', ']', '(', ')' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var fragment in fragments)
+                    output.Add(fragment);
+            }
+
+            return output.OrderBy(x => x).ToArray();
         }
     }
 }
