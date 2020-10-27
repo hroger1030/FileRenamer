@@ -48,9 +48,10 @@ namespace FileRenamer
 
                         // format all the mp3 filenames correctly
                         foreach (string music_file in music_files)
+                        {
                             sb.AppendLine(music_file.Replace(path + "\\", string.Empty));
-
-                        FileIo.RenameFile(path + "\\" + playlist_name, sb.ToString());
+                            FileIo.WriteToFile(path + "\\" + playlist_name, sb.ToString());
+                        }
                         settings.ChangeList.Add("Created M3u file " + playlist_name);
                     }
                 }

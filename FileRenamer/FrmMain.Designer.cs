@@ -370,7 +370,6 @@ namespace FileRenamer
             // 
             this.ddlFind.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlFind.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlFind.FormattingEnabled = true;
             this.ddlFind.Location = new System.Drawing.Point(144, 15);
             this.ddlFind.Margin = new System.Windows.Forms.Padding(4);
