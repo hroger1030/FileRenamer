@@ -19,6 +19,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AutoCodeGenLibrary
 {
@@ -27,7 +29,7 @@ namespace AutoCodeGenLibrary
         /// <summary>
         /// This method writes a string to disk. Overwrites any files with same name an path that already exist.
         /// </summary>
-        public static void WriteToFile(string filePath, string outputData)
+        public static async Task WriteToFile(string filePath, string outputData)
         {
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentException("File path cannot be null or empty");
@@ -35,65 +37,91 @@ namespace AutoCodeGenLibrary
             if (outputData == null)
                 throw new ArgumentException("File path cannot be null");
 
-            string directory_name = Path.GetDirectoryName(filePath);
+            await Task.Run(async () =>
+            {
+                string directoryName = Path.GetDirectoryName(filePath);
 
-            if (!Directory.Exists(directory_name))
-                Directory.CreateDirectory(directory_name);
+                if (!Directory.Exists(directoryName))
+                    Directory.CreateDirectory(directoryName);
 
-            if (File.Exists(filePath) && File.GetAttributes(filePath) != FileAttributes.Normal)
-                File.SetAttributes(filePath, FileAttributes.Normal);
+                if (File.Exists(filePath) && File.GetAttributes(filePath) != FileAttributes.Normal)
+                    File.SetAttributes(filePath, FileAttributes.Normal);
 
-            File.WriteAllText(filePath, outputData);
+                File.WriteAllText(filePath, outputData);
+
+                using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    var bytes = Encoding.UTF8.GetBytes(outputData);
+                    await stream.WriteAsync(bytes, 0, bytes.Length);
+                }
+            });
         }
 
         /// <summary>
         /// This method writes a collection of strings to disk. Overwrites any files with same name an path that already exist.
         /// </summary>
-        public static void WriteToFile(string filePath, List<string> outputData)
+        public static async Task WriteToFile(string filePath, IEnumerable<string> outputData)
         {
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentException("File path cannot be null or empty");
 
+            if (await ContainsInvalidCharacters(filePath))
+                throw new ArgumentException("File path contains one or more invalid characters");
+
             if (outputData == null)
                 throw new ArgumentException("File path cannot be null");
 
-            string directory_name = Path.GetDirectoryName(filePath);
+            await Task.Run(async () =>
+            {
+                string directoryName = Path.GetDirectoryName(filePath);
 
-            if (!Directory.Exists(directory_name))
-                Directory.CreateDirectory(directory_name);
+                if (!Directory.Exists(directoryName))
+                    Directory.CreateDirectory(directoryName);
 
-            if (File.Exists(filePath) && File.GetAttributes(filePath) != FileAttributes.Normal)
-                File.SetAttributes(filePath, FileAttributes.Normal);
+                if (File.Exists(filePath) && File.GetAttributes(filePath) != FileAttributes.Normal)
+                    File.SetAttributes(filePath, FileAttributes.Normal);
 
-            File.WriteAllLines(filePath, outputData);
+                using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    foreach (var line in outputData)
+                    {
+                        var bytes = Encoding.UTF8.GetBytes(line + Environment.NewLine);
+                        await stream.WriteAsync(bytes, 0, bytes.Length);
+                    }
+                }
+            });
         }
 
         /// <summary>
         /// This method writes a byte array to disk. Overwrites any files with same name an path that already exist.
         /// </summary>
-        public static void WriteToFile(string filePath, byte[] outputData)
+        public static async Task WriteToFile(string filePath, byte[] bytes)
         {
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentException("File path cannot be null or empty");
 
-            if (outputData == null)
-                throw new ArgumentException("File path cannot be null");
+            if (bytes == null)
+                throw new ArgumentException("Bytes cannot be null");
 
-            string directory_name = Path.GetDirectoryName(filePath);
+            await Task.Run(async () =>
+            {
+                string directory_name = Path.GetDirectoryName(filePath);
 
-            if (!Directory.Exists(directory_name))
-                Directory.CreateDirectory(directory_name);
+                if (!Directory.Exists(directory_name))
+                    Directory.CreateDirectory(directory_name);
 
-            if (File.Exists(filePath) && File.GetAttributes(filePath) != FileAttributes.Normal)
-                File.SetAttributes(filePath, FileAttributes.Normal);
+                if (File.Exists(filePath) && File.GetAttributes(filePath) != FileAttributes.Normal)
+                    File.SetAttributes(filePath, FileAttributes.Normal);
 
-            File.WriteAllBytes(filePath, outputData);
+                using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write))
+                    await stream.WriteAsync(bytes, 0, bytes.Length);
+            });
         }
 
         /// <summary>
         /// Method to move files that overwrites any existing files.
         /// </summary>
-        public static void MoveFile(string filePath, string fileDestination)
+        public static async Task MoveFile(string filePath, string fileDestination)
         {
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentException("File path cannot be null or empty");
@@ -104,34 +132,42 @@ namespace AutoCodeGenLibrary
             if (string.IsNullOrWhiteSpace(fileDestination))
                 throw new ArgumentException("Destination path cannot be null or empty");
 
-            string directory_name = Path.GetDirectoryName(fileDestination);
-
-            if (!Directory.Exists(directory_name))
-                Directory.CreateDirectory(directory_name);
-
-            if (File.Exists(fileDestination))
+            await Task.Run(() =>
             {
-                if (File.GetAttributes(fileDestination) != FileAttributes.Normal)
-                    File.SetAttributes(fileDestination, FileAttributes.Normal);
+                string directory_name = Path.GetDirectoryName(fileDestination);
 
-                File.Delete(fileDestination);
-            }
+                if (!Directory.Exists(directory_name))
+                    Directory.CreateDirectory(directory_name);
 
-            Directory.Move(filePath, fileDestination);
+                if (File.Exists(fileDestination))
+                {
+
+                    if (File.GetAttributes(fileDestination) != FileAttributes.Normal)
+                        File.SetAttributes(fileDestination, FileAttributes.Normal);
+
+                    File.Delete(fileDestination);
+
+                }
+
+                Directory.Move(filePath, fileDestination);
+            });
         }
 
         /// <summary>
         /// Deletes a file.
         /// </summary>
-        public static void DeleteFile(string filePath)
+        public static async Task DeleteFile(string filePath)
         {
             if (!File.Exists(filePath))
                 throw new ArgumentException("File does not exist");
 
-            if (File.GetAttributes(filePath) != FileAttributes.Normal)
-                File.SetAttributes(filePath, FileAttributes.Normal);
+            await Task.Run(() =>
+            {
+                if (File.GetAttributes(filePath) != FileAttributes.Normal)
+                    File.SetAttributes(filePath, FileAttributes.Normal);
 
-            File.Delete(filePath);
+                File.Delete(filePath);
+            });
         }
 
         /// <summary>
@@ -139,7 +175,7 @@ namespace AutoCodeGenLibrary
         /// </summary>
         /// <param name="oldFilePath">source file name</param>
         /// <param name="newFilePath">new file name</param>
-        public static void RenameFile(string oldFilePath, string newFilePath)
+        public static async Task RenameFile(string oldFilePath, string newFilePath)
         {
             if (string.IsNullOrWhiteSpace(oldFilePath))
                 throw new ArgumentException("Old path cannot be null or empty");
@@ -147,24 +183,27 @@ namespace AutoCodeGenLibrary
             if (string.IsNullOrWhiteSpace(newFilePath))
                 throw new ArgumentException("New path cannot be null or empty");
 
-            // changes that are only filename case related need special treatment
-            if (oldFilePath.ToLower() == newFilePath.ToLower())
+            await Task.Run(() =>
             {
-                string temp_name = GenerateTemporaryFilename(oldFilePath);
+                // changes that are only filename case related need special treatment
+                if (oldFilePath.ToLower() == newFilePath.ToLower())
+                {
+                    string tempName = GenerateTemporaryFilename(Path.GetDirectoryName(oldFilePath));
 
-                File.Move(oldFilePath, temp_name);
-                File.Move(temp_name, newFilePath);
-            }
-            else
-            {
-                File.Move(oldFilePath, newFilePath);
-            }
+                    File.Move(oldFilePath, tempName);
+                    File.Move(tempName, newFilePath);
+                }
+                else
+                {
+                    File.Move(oldFilePath, newFilePath);
+                }
+            });
         }
 
         /// <summary>
         /// Renames a directory the file system. 
         /// </summary>
-        public static void RenameDirectory(string oldDirectoryPath, string newDirectoryPath)
+        public static async Task RenameDirectory(string oldDirectoryPath, string newDirectoryPath)
         {
             if (string.IsNullOrWhiteSpace(oldDirectoryPath))
                 throw new ArgumentException("Old directory name cannot be null or empty");
@@ -178,23 +217,26 @@ namespace AutoCodeGenLibrary
             if (Directory.Exists(newDirectoryPath))
                 throw new ArgumentException($"A directory named '{newDirectoryPath}' already exists");
 
-            if (oldDirectoryPath.ToLower() == newDirectoryPath.ToLower())
+            await Task.Run(() =>
             {
-                string temp_name = GenerateTemporaryDirectoryname(oldDirectoryPath);
+                if (oldDirectoryPath.ToLower() == newDirectoryPath.ToLower())
+                {
+                    string tempName = GenerateTemporaryDirectoryname(oldDirectoryPath);
 
-                Directory.Move(oldDirectoryPath, temp_name);
-                Directory.Move(temp_name, newDirectoryPath);
-            }
-            else
-            {
-                Directory.Move(oldDirectoryPath, newDirectoryPath);
-            }
+                    Directory.Move(oldDirectoryPath, tempName);
+                    Directory.Move(tempName, newDirectoryPath);
+                }
+                else
+                {
+                    Directory.Move(oldDirectoryPath, newDirectoryPath);
+                }
+            });
         }
 
         /// <summary>
         /// Function copies a entire directory's content into a new directory, creating it if it does not exist.
         /// </summary>
-        public static void CopyDirectory(string sourceDirectory, string destinationDirectory)
+        public static async Task CopyDirectory(string sourceDirectory, string destinationDirectory)
         {
             if (string.IsNullOrWhiteSpace(sourceDirectory))
                 throw new ArgumentException("Source directory name cannot be null or empty");
@@ -211,75 +253,98 @@ namespace AutoCodeGenLibrary
             if (!Directory.Exists(destinationDirectory))
                 Directory.CreateDirectory(destinationDirectory);
 
-            // Recursively add subdirectories
-            foreach (string subdirectory_name in Directory.GetDirectories(sourceDirectory))
+            await Task.Run(async () =>
             {
-                string destination_path = subdirectory_name.Replace(sourceDirectory, destinationDirectory);
-                CopyDirectory(subdirectory_name, destination_path);
-            }
+                // Recursively add subdirectories
+                foreach (string subdirectory in Directory.GetDirectories(sourceDirectory))
+                {
+                    string destination = subdirectory.Replace(sourceDirectory, destinationDirectory);
+                    await CopyDirectory(subdirectory, destination);
+                }
 
-            // copy all files 
-            foreach (string existing_file_path in Directory.GetFiles(sourceDirectory))
-            {
-                string new_file_name = existing_file_path.Replace(sourceDirectory, destinationDirectory);
+                // copy all files 
+                foreach (string file in Directory.GetFiles(sourceDirectory))
+                {
+                    string newFile = file.Replace(sourceDirectory, destinationDirectory);
 
-                if (File.Exists(new_file_name) && File.GetAttributes(new_file_name) != FileAttributes.Normal)
-                    File.SetAttributes(new_file_name, FileAttributes.Normal);
+                    if (File.Exists(newFile) && File.GetAttributes(newFile) != FileAttributes.Normal)
+                        File.SetAttributes(newFile, FileAttributes.Normal);
 
-                File.Copy(existing_file_path, new_file_name, true);
-            }
+                    File.Copy(file, newFile, true);
+                }
+            });
         }
 
         /// <summary>
         /// Deletes all files and subdirectories in a tree.
         /// </summary>
-        public static void DeleteDirectoryTree(string directory)
+        public static async Task DeleteDirectoryTree(string directory)
         {
             if (!Directory.Exists(directory))
                 throw new ArgumentException("Directory does not exist");
 
-            foreach (string file_name in Directory.GetFiles(directory))
+            await Task.Run(() =>
             {
-                // get rid of 'read only' flags...
-                if (File.GetAttributes(file_name) != FileAttributes.Normal)
-                    File.SetAttributes(file_name, FileAttributes.Normal);
+                var files = Directory.GetFiles(directory);
 
-                File.Delete(file_name);
-            }
+                foreach (string fileName in files)
+                {
+                    if (File.GetAttributes(fileName) != FileAttributes.Normal)
+                        File.SetAttributes(fileName, FileAttributes.Normal);
 
-            Directory.Delete(directory, true);
+                    File.Delete(fileName);
+                }
+
+                Directory.Delete(directory, true);
+            });
         }
 
         /// <summary>
         /// Determines if a string contains characters are invalid to be used as a path.
         /// </summary>
-        public static bool ContainsInvalidPathCharacters(string input)
+        public static async Task<bool> ContainsInvalidPathCharacters(string input)
         {
-            return input.IndexOfAny(Path.GetInvalidPathChars()) != -1;
+            return await Task.Run(() =>
+            {
+                return input.IndexOfAny(Path.GetInvalidPathChars()) != -1;
+            });
         }
 
         /// <summary>
         /// Determines if a string contains characters that are invalid to be used as a file name.
         /// </summary>
-        public static bool ContainsInvalidFileNameCharacters(string input)
+        public static async Task<bool> ContainsInvalidFileNameCharacters(string input)
         {
-            return input.IndexOfAny(Path.GetInvalidFileNameChars()) != -1;
+            return await Task.Run(() =>
+            {
+                return input.IndexOfAny(Path.GetInvalidFileNameChars()) != -1;
+            });
         }
 
         /// <summary>
         /// Determines if a full path contains characters that are invalid in either the path or
         /// file name.
         /// </summary>
-        public static bool ContainsInvalidCharacters(string input)
+        public static async Task<bool> ContainsInvalidCharacters(string input)
         {
-            string file_path = Path.GetDirectoryName(input);
-            string file_name = Path.GetFileName(input);
+            try
+            {
+                string path = Path.GetDirectoryName(input);
+                string file = Path.GetFileName(input);
 
-            if (ContainsInvalidPathCharacters(file_path))
-                return true;
+                if (await ContainsInvalidPathCharacters(path))
+                    return true;
 
-            if (ContainsInvalidFileNameCharacters(file_name))
-                return true;
+                if (await ContainsInvalidFileNameCharacters(file))
+                    return true;
+            }
+            catch (ArgumentException ex)
+            {
+                if (ex.Message == "Illegal characters in path.")
+                    return true;
+                else
+                    throw;
+            }
 
             return false;
         }
@@ -287,27 +352,27 @@ namespace AutoCodeGenLibrary
         /// <summary>
         /// Generates a random unique name for a file in a given directory.
         /// </summary>
-        private static string GenerateTemporaryFilename(string filePath)
+        public static string GenerateTemporaryFilename(string path)
         {
-            string temp_name = string.Empty;
+            string tempName = Path.Combine(path, Path.GetRandomFileName());
 
-            while (File.Exists(temp_name))
-                temp_name = Path.Combine(filePath, Path.GetRandomFileName());
+            while (File.Exists(tempName))
+                tempName = Path.Combine(path, Path.GetRandomFileName());
 
-            return temp_name;
+            return tempName;
         }
 
         /// <summary>
         /// Generates a random unique name for a given directory.
         /// </summary>
-        private static string GenerateTemporaryDirectoryname(string path)
+        public static string GenerateTemporaryDirectoryname(string path)
         {
-            string temp_name = string.Empty;
+            string tempName = string.Empty;
 
-            while (File.Exists(temp_name))
-                temp_name = path + Guid.NewGuid().ToString("N");
+            while (File.Exists(tempName))
+                tempName = path + Guid.NewGuid().ToString("N");
 
-            return temp_name;
+            return tempName;
         }
     }
 }

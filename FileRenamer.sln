@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileRenamer", "FileRenamer\FileRenamer.csproj", "{524BF508-29DE-4727-B495-FA3830ED8DD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.Framework", "..\Database\DAL.Framework\DAL.Framework.csproj", "{E2EFDCD8-DD5A-4416-8B44-0F780431E98E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{524BF508-29DE-4727-B495-FA3830ED8DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{524BF508-29DE-4727-B495-FA3830ED8DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{524BF508-29DE-4727-B495-FA3830ED8DD8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E2EFDCD8-DD5A-4416-8B44-0F780431E98E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E2EFDCD8-DD5A-4416-8B44-0F780431E98E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2EFDCD8-DD5A-4416-8B44-0F780431E98E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2EFDCD8-DD5A-4416-8B44-0F780431E98E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

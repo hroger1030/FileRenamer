@@ -11,7 +11,7 @@ using AutoCodeGenLibrary;
 
 namespace FileRenamer
 {
-    public class cFileRenamer
+    public class FileRenamer
     {
         public const string FILE_FILTER_ALL_FILES = "(all files)";
         public const string CASE_NO_CHANGE = "(no changes)";
@@ -19,20 +19,27 @@ namespace FileRenamer
         public const string CASE_ALL_LOWER = "all lower case";
         public const string CASE_TITLE_CASE = "title case";
 
-        public static void ProcessFolder(string path, cSettings settings)
+        public static async Task<Settings> ProcessFolder(string path, Settings settings)
         {
             try
             {
                 if (settings.ProcessFiles)
                 {
-                    string[] file_names = Directory.GetFiles(path);
+                    string[] fileNames = Directory.GetFiles(path);
 
-                    Parallel.ForEach(file_names, new ParallelOptions { MaxDegreeOfParallelism = 8 }, file_name =>
+#if DEBUG
+                    foreach (var fileName in fileNames)
                     {
-                        // process files matching our filter criteria
-                        if (settings.FileTypes == FILE_FILTER_ALL_FILES || settings.FileTypes == Path.GetExtension(file_name))
-                            ProcessFilename(file_name, settings);
+                        if (settings.FileTypes == FILE_FILTER_ALL_FILES || settings.FileTypes == Path.GetExtension(fileName))
+                            await ProcessFilename(fileName, settings);
+                    }
+#else
+                    Parallel.ForEach(fileNames, new ParallelOptions { MaxDegreeOfParallelism = 8 }, fileName =>
+                    {
+                        if (settings.FileTypes == FILE_FILTER_ALL_FILES || settings.FileTypes == Path.GetExtension(fileName))
+                            ProcessFilename(fileName, settings);
                     });
+#endif
                 }
 
                 // after all the files have been renamed, check and see if we need to build a playlist of .mp3 files in directory.
@@ -40,112 +47,112 @@ namespace FileRenamer
                 {
                     var sb = new StringBuilder();
 
-                    string[] music_files = Directory.GetFiles(path, "*.mp3");
+                    string[] songs = Directory.GetFiles(path, "*.mp3");
 
-                    if (music_files.Length > 0)
+                    if (songs.Length > 0)
                     {
-                        string playlist_name = Path.Combine("~" + path.Substring(path.LastIndexOf('\\') + 1) + ".m3u");
+                        string playlist = Path.Combine("~" + path.Substring(path.LastIndexOf('\\') + 1) + ".m3u");
 
-                        // format all the mp3 filenames correctly
-                        foreach (string music_file in music_files)
-                        {
-                            sb.AppendLine(music_file.Replace(path + "\\", string.Empty));
-                            FileIo.WriteToFile(path + "\\" + playlist_name, sb.ToString());
-                        }
-                        settings.ChangeList.Add("Created M3u file " + playlist_name);
+                        foreach (string song in songs)
+                            sb.AppendLine(song.Replace(path + "\\", string.Empty));
+
+                        await FileIo.WriteToFile(path + "\\" + playlist, sb.ToString());
+                        settings.ChangeList.Add("Created M3u file " + playlist);
                     }
                 }
 
-                string[] folder_names = Directory.GetDirectories(path);
+                string[] directories = Directory.GetDirectories(path);
 
-                foreach (string folder_name in folder_names)
+                foreach (string directory in directories)
                 {
                     // do this in reverse order, deepest directory first so upstream changes don't cause havok.
                     if (settings.Recursive)
-                        ProcessFolder(folder_name, settings);
+                        await ProcessFolder(directory, settings);
 
                     if (settings.ProcessDirectories)
-                        ProcessFoldername(folder_name, settings);
+                        await ProcessFoldername(directory, settings);
                 }
             }
             catch (Exception ex)
             {
                 settings.ErrorList.Add(ex.Message);
             }
+
+            return settings;
         }
 
-        private static void ProcessFoldername(string inputPath, cSettings settings)
+        private static async Task ProcessFoldername(string inputPath, Settings settings)
         {
             try
             {
-                string input_directory_name = inputPath.Substring(inputPath.LastIndexOf('\\') + 1);
-                string output_directory_name = input_directory_name;
-                string current_path = inputPath.Substring(0, inputPath.LastIndexOf('\\') + 1);
+                string inputDirectoryName = inputPath.Substring(inputPath.LastIndexOf('\\') + 1);
+                string outputDirectoryName = inputDirectoryName;
+                string currentPath = inputPath.Substring(0, inputPath.LastIndexOf('\\') + 1);
 
                 if (settings.RemoveURL)
-                    output_directory_name = HttpUtility.UrlDecode(output_directory_name);
+                    outputDirectoryName = HttpUtility.UrlDecode(outputDirectoryName);
 
                 // main find and replace
                 if (!string.IsNullOrEmpty(settings.Find))
                 {
                     if (settings.UseRegex)
                     {
-                        output_directory_name = Regex.Replace(output_directory_name, settings.Find, settings.Replace);
+                        outputDirectoryName = Regex.Replace(outputDirectoryName, settings.Find, settings.Replace);
                     }
                     else
                     {
                         if (settings.CaseSensitive)
-                            output_directory_name = output_directory_name.Replace(settings.Find, settings.Replace);
+                            outputDirectoryName = outputDirectoryName.Replace(settings.Find, settings.Replace);
                         else
-                            output_directory_name = ReplaceCaseInsensitive(output_directory_name, settings.Find, settings.Replace);
+                            outputDirectoryName = ReplaceCaseInsensitive(outputDirectoryName, settings.Find, settings.Replace);
                     }
                 }
 
                 if (!string.IsNullOrWhiteSpace(settings.Prefix) || !string.IsNullOrWhiteSpace(settings.Suffix))
-                    output_directory_name = settings.Prefix + output_directory_name + settings.Suffix;
+                    outputDirectoryName = settings.Prefix + outputDirectoryName + settings.Suffix;
 
                 if (settings.RemoveSpace)
                 {
-                    while (output_directory_name.Contains("  "))
-                        output_directory_name = output_directory_name.Replace("  ", " ");
+                    while (outputDirectoryName.Contains("  "))
+                        outputDirectoryName = outputDirectoryName.Replace("  ", " ");
 
-                    output_directory_name = output_directory_name.Trim();
+                    outputDirectoryName = outputDirectoryName.Trim();
                 }
 
                 // do any changes of case here
                 switch (settings.Case.ToLower())
                 {
-                    case CASE_ALL_LOWER: output_directory_name = output_directory_name.ToLower(); break;
-                    case CASE_ALL_UPPER: output_directory_name = output_directory_name.ToUpper(); break;
-                    case CASE_TITLE_CASE: output_directory_name = ToTitleCase(output_directory_name); break;
+                    case CASE_ALL_LOWER: outputDirectoryName = outputDirectoryName.ToLower(); break;
+                    case CASE_ALL_UPPER: outputDirectoryName = outputDirectoryName.ToUpper(); break;
+                    case CASE_TITLE_CASE: outputDirectoryName = ToTitleCase(outputDirectoryName); break;
 
                     default:
                         // else do nothing.
                         break;
                 }
 
-                if (settings.RemoveLeadingCharacter > 0 && output_directory_name.Length > settings.RemoveLeadingCharacter)
-                    output_directory_name = output_directory_name.Substring(settings.RemoveLeadingCharacter);
+                if (settings.RemoveLeadingCharacter > 0 && outputDirectoryName.Length > settings.RemoveLeadingCharacter)
+                    outputDirectoryName = outputDirectoryName.Substring(settings.RemoveLeadingCharacter);
 
-                if (settings.RemoveTrailingCharacter > 0 && output_directory_name.Length > settings.RemoveTrailingCharacter)
-                    output_directory_name = output_directory_name.Substring(0, output_directory_name.Length - settings.RemoveTrailingCharacter);
+                if (settings.RemoveTrailingCharacter > 0 && outputDirectoryName.Length > settings.RemoveTrailingCharacter)
+                    outputDirectoryName = outputDirectoryName.Substring(0, outputDirectoryName.Length - settings.RemoveTrailingCharacter);
 
-                if (settings.MaxNameLength > 0 && output_directory_name.Length > settings.MaxNameLength)
-                    output_directory_name = output_directory_name.Substring(0, settings.MaxNameLength);
+                if (settings.MaxNameLength > 0 && outputDirectoryName.Length > settings.MaxNameLength)
+                    outputDirectoryName = outputDirectoryName.Substring(0, settings.MaxNameLength);
 
                 // make sure that the new directory name doesn't already exist.
-                if (output_directory_name != input_directory_name && !string.IsNullOrEmpty(output_directory_name))
+                if (outputDirectoryName != inputDirectoryName && !string.IsNullOrEmpty(outputDirectoryName))
                 {
-                    output_directory_name = current_path + output_directory_name;
+                    outputDirectoryName = currentPath + outputDirectoryName;
 
-                    if (Directory.Exists(output_directory_name) && (output_directory_name.ToLower() != inputPath.ToLower()))
+                    if (Directory.Exists(outputDirectoryName) && (outputDirectoryName.ToLower() != inputPath.ToLower()))
                     {
-                        settings.ErrorList.Add("Cannot rename " + inputPath + " -> " + output_directory_name + ", directory already exists.");
+                        settings.ErrorList.Add("Cannot rename " + inputPath + " -> " + outputDirectoryName + ", directory already exists.");
                         return;
                     }
 
-                    FileIo.RenameDirectory(inputPath, output_directory_name);
-                    settings.ChangeList.Add(inputPath + " -> " + output_directory_name);
+                    await FileIo.RenameDirectory(inputPath, outputDirectoryName);
+                    settings.ChangeList.Add(inputPath + " -> " + outputDirectoryName);
                 }
 
                 return;
@@ -156,13 +163,13 @@ namespace FileRenamer
             }
         }
 
-        private static void ProcessFilename(string inputPath, cSettings settings)
+        private static async Task ProcessFilename(string inputPath, Settings settings)
         {
             if (string.IsNullOrWhiteSpace(inputPath))
                 throw new Exception("File path is null or empty");
 
             if (!File.Exists(inputPath))
-                throw new Exception(string.Format("File '{0}' does not exist", inputPath));
+                throw new Exception($"File '{inputPath}' does not exist");
 
             if (settings == null)
                 throw new Exception("Settings object is null");
@@ -264,7 +271,7 @@ namespace FileRenamer
                         return;
                     }
 
-                    FileIo.RenameFile(inputPath, output_path);
+                    await FileIo.RenameFile(inputPath, output_path);
                     settings.ChangeList.Add(inputPath + " -> " + output_path);
                 }
             }
@@ -280,21 +287,21 @@ namespace FileRenamer
                 return input;
 
             char[] output = new char[input.Length];
-            bool first_char_flag = true;
-            var ignored_chars = new char[] { ' ', '"', '~', '-', '.', '&', '(', ')', '{', '}', '[', ']' };
+            bool firstFlag = true;
+            var ignoredChars = new char[] { ' ', '"', '~', '-', '.', '&', '(', ')', '{', '}', '[', ']' };
 
             // path might be of a full file path, such as 'c:\temp\stuff\foo.txt', we only want to process the file name.
-            int last_character_to_process = input.LastIndexOf(Path.GetExtension(input));
+            int lastCharacter = input.LastIndexOf(Path.GetExtension(input));
 
-            if (last_character_to_process == -1)
-                last_character_to_process = input.Length;
+            if (lastCharacter == -1)
+                lastCharacter = input.Length;
 
-            int first_character_to_process = input.LastIndexOf('\\');
+            int firstCharacter = input.LastIndexOf('\\');
 
-            if (first_character_to_process == -1)
-                first_character_to_process = 0;
-            else if (first_character_to_process < input.Length - 1)
-                first_character_to_process++;
+            if (firstCharacter == -1)
+                firstCharacter = 0;
+            else if (firstCharacter < input.Length - 1)
+                firstCharacter++;
 
             input = input.ToLower();
 
@@ -303,16 +310,16 @@ namespace FileRenamer
                 output[i] = input[i];
             }
 
-            for (int i = first_character_to_process; i < last_character_to_process; i++)
+            for (int i = firstCharacter; i < lastCharacter; i++)
             {
-                if (Char.IsLetter(input[i]) && i > 0 && ignored_chars.Contains(input[i - 1]))
-                    first_char_flag = true;
+                if (char.IsLetter(input[i]) && i > 0 && ignoredChars.Contains(input[i - 1]))
+                    firstFlag = true;
 
-                if (first_char_flag)
+                if (firstFlag)
                 {
                     // last character was a space. Uppercase
                     output[i] = Convert.ToChar(input[i].ToString().ToUpper());
-                    first_char_flag = false;
+                    firstFlag = false;
                 }
                 else
                 {
@@ -362,7 +369,7 @@ namespace FileRenamer
             return new string(chars, 0, count);
         }
 
-        public static void RunScript(string scriptPath, ref cSettings settings)
+        public static async Task<Settings> RunScript(string scriptPath, Settings settings)
         {
             var script_instructions = File.ReadAllLines(scriptPath);
 
@@ -378,27 +385,24 @@ namespace FileRenamer
                     if (buffer[0] == '#')
                         continue;
 
-                    string instruction;
-                    string[] arguments;
-
-                    ParseInstruction(buffer, out instruction, out arguments);
+                    ParseInstruction(buffer, out string instruction, out string[] arguments);
 
                     switch (instruction)
                     {
                         // configuration settings
-                        case "setcasesensitive": settings.CaseSensitive = Boolean.Parse(arguments[0]); break;
-                        case "setlogchanges": settings.LogChanges = Boolean.Parse(arguments[0]); break;
-                        case "setlowerextensions": settings.LowerExtensions = Boolean.Parse(arguments[0]); break;
-                        case "setrecursive": settings.Recursive = Boolean.Parse(arguments[0]); break;
+                        case "setcasesensitive": settings.CaseSensitive = bool.Parse(arguments[0]); break;
+                        case "setlogchanges": settings.LogChanges = bool.Parse(arguments[0]); break;
+                        case "setlowerextensions": settings.LowerExtensions = bool.Parse(arguments[0]); break;
+                        case "setrecursive": settings.Recursive = bool.Parse(arguments[0]); break;
                         case "setremoveleadingcharacter": settings.RemoveLeadingCharacter = int.Parse(arguments[0]); break;
                         case "setremovetrailingcharacter": settings.RemoveTrailingCharacter = int.Parse(arguments[0]); break;
-                        case "setremovespace": settings.RemoveSpace = Boolean.Parse(arguments[0]); break;
-                        case "setremoveurl": settings.RemoveURL = Boolean.Parse(arguments[0]); break;
-                        case "setuseregex": settings.UseRegex = Boolean.Parse(arguments[0]); break;
-                        case "setcreateplaylist": settings.CreatePlaylist = Boolean.Parse(arguments[0]); break;
-                        case "setfixfileproperties": settings.FixFileProperties = Boolean.Parse(arguments[0]); break;
-                        case "setprocessdirectories": settings.ProcessDirectories = Boolean.Parse(arguments[0]); break;
-                        case "setprocessfiles": settings.ProcessFiles = Boolean.Parse(arguments[0]); break;
+                        case "setremovespace": settings.RemoveSpace = bool.Parse(arguments[0]); break;
+                        case "setremoveurl": settings.RemoveURL = bool.Parse(arguments[0]); break;
+                        case "setuseregex": settings.UseRegex = bool.Parse(arguments[0]); break;
+                        case "setcreateplaylist": settings.CreatePlaylist = bool.Parse(arguments[0]); break;
+                        case "setfixfileproperties": settings.FixFileProperties = bool.Parse(arguments[0]); break;
+                        case "setprocessdirectories": settings.ProcessDirectories = bool.Parse(arguments[0]); break;
+                        case "setprocessfiles": settings.ProcessFiles = bool.Parse(arguments[0]); break;
                         case "setmaxnamelength": settings.MaxNameLength = int.Parse(arguments[0]); break;
 
                         // todo - fix quotes in parse instructions?
@@ -417,7 +421,7 @@ namespace FileRenamer
                             settings.Find = arguments[0];
                             settings.Replace = arguments[1];
 
-                            ProcessFolder(settings.Path, settings);
+                            await ProcessFolder(settings.Path, settings);
 
                             break;
 
@@ -426,23 +430,25 @@ namespace FileRenamer
                             settings.Find = arguments[0];
                             settings.Replace = string.Empty;
 
-                            ProcessFolder(settings.Path, settings);
+                            await ProcessFolder(settings.Path, settings);
 
                             break;
 
                         default:
-                            throw new Exception(string.Format("Unrecognized instruction '{0}'", instruction));
+                            throw new Exception(string.Format($"Unrecognized instruction '{instruction}'"));
                     }
                 }
                 catch (Exception ex)
                 {
-                    settings.ErrorList.Add(string.Format("Exception encountered: {0}", ex.Message));
+                    settings.ErrorList.Add(string.Format($"Exception encountered: {ex.Message}"));
                     continue;
                 }
             }
+
+            return settings;
         }
 
-        private static void ParseInstruction(string input, out string instruction, out string[] arguments)
+        public static void ParseInstruction(string input, out string instruction, out string[] arguments)
         {
             // pareses an input string that looks like: DoSomething('foo','bar')
 
@@ -490,7 +496,7 @@ namespace FileRenamer
         }
 
         /// <summary>
-        /// Gets all the file names in a directory path
+        /// Gets all the file names in a directory path and breaks all the unique words in the name into a single list
         /// </summary>
         public static string[] BreakFilenames(string path, bool recursive)
         {

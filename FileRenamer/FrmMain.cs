@@ -1,13 +1,11 @@
+using AutoCodeGenLibrary;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Media;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using AutoCodeGenLibrary;
 
 namespace FileRenamer
 {
@@ -46,15 +44,15 @@ namespace FileRenamer
             _ScriptList = new List<string>();
 
             // set up case combo box
-            cboCase.Items.Add(cFileRenamer.CASE_NO_CHANGE);
-            cboCase.Items.Add(cFileRenamer.CASE_ALL_UPPER);
-            cboCase.Items.Add(cFileRenamer.CASE_ALL_LOWER);
-            cboCase.Items.Add(cFileRenamer.CASE_TITLE_CASE);
-            cboCase.Text = cFileRenamer.CASE_NO_CHANGE;
+            cboCase.Items.Add(FileRenamer.CASE_NO_CHANGE);
+            cboCase.Items.Add(FileRenamer.CASE_ALL_UPPER);
+            cboCase.Items.Add(FileRenamer.CASE_ALL_LOWER);
+            cboCase.Items.Add(FileRenamer.CASE_TITLE_CASE);
+            cboCase.Text = FileRenamer.CASE_NO_CHANGE;
 
             // set up filter combo box
-            cboFileTypes.Items.Add(cFileRenamer.FILE_FILTER_ALL_FILES);
-            cboFileTypes.Text = cFileRenamer.FILE_FILTER_ALL_FILES;
+            cboFileTypes.Items.Add(FileRenamer.FILE_FILTER_ALL_FILES);
+            cboFileTypes.Text = FileRenamer.FILE_FILTER_ALL_FILES;
 
             // create tool tips for controls
             CreateToolTip(chkCaseSensitive, "Case Sensitive Search", "This option forces the find and replace string to perform a case sensitive search. Matching is by default non-case sensitive.");
@@ -156,7 +154,7 @@ namespace FileRenamer
 
         protected async void btnProcessFiles_Click(object sender, EventArgs e)
         {
-            cSettings settings = GetCurrentSettings();
+            var settings = GetCurrentSettings();
 
             try
             {
@@ -171,25 +169,20 @@ namespace FileRenamer
                     ManageHistoryList(cboSelectedDirectory, _DirectoryList);
                     ManageHistoryList(cboScriptList, _ScriptList);
 
-                    await Task.Run(() =>
-                    {
-                        cFileRenamer.ProcessFolder(settings.Path, settings);
-                    });
+                    settings = await FileRenamer.ProcessFolder(settings.Path, settings);
                 }
                 else
                 {
-                    await Task.Run(() =>
-                    {
-                        cFileRenamer.RunScript(settings.ScriptPath, ref settings);
-                    });
+                    settings = await FileRenamer.RunScript(settings.ScriptPath, settings);
                 }
 
                 if (settings.LogChanges)
                 {
                     // Write Out list of changes
-                    string output_name = string.Format(OUTPUT_FILE_NAME, DateTime.Now.ToFileTime());
-                    string directory_name = Path.Combine(cboSelectedDirectory.Text, output_name);
-                    FileIo.WriteToFile(directory_name, settings.ChangeList);
+                    string outputName = string.Format(OUTPUT_FILE_NAME, DateTime.Now.ToFileTime());
+                    string pathName = Path.Combine(cboSelectedDirectory.Text, outputName);
+
+                    await FileIo.WriteToFile(pathName, settings.ChangeList);
                 }
 
             }
@@ -270,15 +263,15 @@ namespace FileRenamer
 
                 var file_types = GetFileExtensionList(cboSelectedDirectory.Text);
 
-                file_types.Add(cFileRenamer.FILE_FILTER_ALL_FILES);
+                file_types.Add(FileRenamer.FILE_FILTER_ALL_FILES);
                 file_types.Sort();
 
                 cboFileTypes.Items.Clear();
                 cboFileTypes.Items.AddRange(file_types.ToArray());
-                cboFileTypes.Text = cFileRenamer.FILE_FILTER_ALL_FILES;
+                cboFileTypes.Text = FileRenamer.FILE_FILTER_ALL_FILES;
 
                 // find name fragments
-                var name_fragments = cFileRenamer.BreakFilenames(cboSelectedDirectory.Text, chkRecursive.Checked);
+                var name_fragments = FileRenamer.BreakFilenames(cboSelectedDirectory.Text, chkRecursive.Checked);
 
                 ddlFind.Items.Clear();
                 ddlFind.Items.AddRange(name_fragments);
@@ -357,9 +350,9 @@ namespace FileRenamer
             tool_tip.AutoPopDelay = int.MaxValue;
         }
 
-        protected cSettings GetCurrentSettings()
+        protected Settings GetCurrentSettings()
         {
-            cSettings settings = new cSettings
+            Settings settings = new Settings
             {
                 Path = cboSelectedDirectory.Text,
                 FileTypes = cboFileTypes.Text,
@@ -376,7 +369,7 @@ namespace FileRenamer
 
             if (rbtFindAndReplace.Checked)
             {
-                settings.Find = (string)ddlFind.SelectedItem;
+                settings.Find = ddlFind.Text;
                 settings.Replace = cboReplace.Text;
                 settings.CaseSensitive = chkCaseSensitive.Checked;
                 settings.UseRegex = chkUseRegex.Checked;
