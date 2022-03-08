@@ -15,9 +15,9 @@ namespace FileRenamer
         public static extern int GetLongPathName
         (
             [MarshalAs(UnmanagedType.LPTStr)]
-                string path,
+            string path,
             [MarshalAs(UnmanagedType.LPTStr)]
-                StringBuilder longPath,
+            StringBuilder longPath,
             int longPathLength
         );
 
@@ -62,16 +62,16 @@ namespace FileRenamer
             CreateToolTip(chkRecursive, "Perform Recursive Processing of Subdirectories", "Selecting this option causes all subdirectories under the selected directory to be processed in addition to the selected directory. Be careful with this option, as it can affect many files.");
             CreateToolTip(rbtRemoveLeadingCharacter, "Remove Leading Character of File Name", "This removes the first character of filename. This is useful for removing ordinals from the beginning of filenames, since they are difficult to match without using a regular expression.");
             CreateToolTip(rbtRemoveTrailingCharacter, "Remove Trailing Character of File Name", "This removes the last character of filename that isn't part of the file extension.");
-            CreateToolTip(rbtTruncateWhiteSpace, "Truncate Extra White Spaces", "This removes all extra whitespace in a file name, trimming all leading or trailing whitespace and reducing any consecuitively repeated whitespaces to a single white space.");
+            CreateToolTip(rbtTruncateWhiteSpace, "Truncate Extra White Spaces", "This removes all extra whitespace in a file name, trimming all leading or trailing whitespace and reducing any consecutively repeated whitespace to a single white space.");
             CreateToolTip(rbtRemoveUrlEncoding, "Remove URL Encoding", "Selecting this option will remove any URL encoding in the filename. It is applied before any other processing is done.");
-            CreateToolTip(chkUseRegex, "Use Regular Expression", "This option allows you to use regular expressions in your search string. This is only reccomended for advanced users.");
+            CreateToolTip(chkUseRegex, "Use Regular Expression", "This option allows you to use regular expressions in your search string. This is only recommended for advanced users.");
             CreateToolTip(chkProcessDirectories, "Process Directories", "This option will cause directory names to be processed.");
             CreateToolTip(chkProcessFiles, "Process Files", "This option will process directory names to be processed along with files.");
-            CreateToolTip(chkCreatePlaylist, "Create Playlist", "This option will create a .m3u playlist from all the file in the directory.");
+            CreateToolTip(chkCreatePlaylist, "Create a play list", "This option will create a .m3u play list from all the file in the directory.");
             CreateToolTip(chkStandardizeFileProperties, "Standardize File Properties", "This option will remove all file properties, such as read-only or hidden from a file.");
 
             CreateToolTip(cboCase, "File Name Case", "This drop down allows you to select the casing applied to the output file name.");
-            CreateToolTip(cboFileTypes, "File Type Filter", "This allows you to to restrict the types of files that are searched for matchs.");
+            CreateToolTip(cboFileTypes, "File Type Filter", "This allows you to restrict the types of files that are searched for match.");
             CreateToolTip(ddlFind, "Find String", "Enter the string that you wish to replace here. A history of search strings is stored, should you wish to repeat a replacement.");
             CreateToolTip(cboReplace, "Replace String", "Enter the string that you wish to replace here. A history of search strings is stored, should you wish to repeat a replacement.");
             CreateToolTip(cboSelectedDirectory, "Selected Directory", "This is the directory that will be searched for file name replacements. Note that the 'process files' button is disabled if you enter an invalid directory path.");
@@ -84,7 +84,7 @@ namespace FileRenamer
 
             if (args.Length > 0)
             {
-                // args gives us a strange dos formatted path name, fix with win32 api call
+                // arguments gives us a strange dos formatted path name, fix with win32 api call
                 var fixed_path = new StringBuilder(1024);
                 GetLongPathName(args[0], fixed_path, fixed_path.Capacity);
 
@@ -94,7 +94,7 @@ namespace FileRenamer
                 string directory_path = buffer;
                 string file_name = buffer.Substring(directory_path.LastIndexOf('\\') + 1);
 
-                // if the path doesnt exist as passed in, it probably needs to have the filename removed...
+                // if the path doesn't exist as passed in, it probably needs to have the filename removed...
                 if (!Directory.Exists(directory_path))
                     directory_path = directory_path.Substring(0, directory_path.LastIndexOf('\\'));
 
@@ -143,6 +143,7 @@ namespace FileRenamer
             txtSuffix.Text = string.Empty;
             cboScriptList.Text = string.Empty;
             lblFilesRenamed.Text = string.Empty;
+            rbtTruncateWhiteSpace.Checked = true;
 
             ddlFind.Focus();
         }

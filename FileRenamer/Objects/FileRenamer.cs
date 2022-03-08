@@ -42,7 +42,7 @@ namespace FileRenamer
 #endif
                 }
 
-                // after all the files have been renamed, check and see if we need to build a playlist of .mp3 files in directory.
+                // after all the files have been renamed, check and see if we need to build a play list of .mp3 files in directory.
                 if (settings.CreatePlaylist)
                 {
                     var sb = new StringBuilder();
@@ -65,7 +65,7 @@ namespace FileRenamer
 
                 foreach (string directory in directories)
                 {
-                    // do this in reverse order, deepest directory first so upstream changes don't cause havok.
+                    // do this in reverse order, deepest directory first so upstream changes don't cause havoc.
                     if (settings.Recursive)
                         await ProcessFolder(directory, settings);
 
@@ -184,7 +184,7 @@ namespace FileRenamer
                 if (settings.FixFileProperties && File.GetAttributes(inputPath) != FileAttributes.Normal)
                     File.SetAttributes(inputPath, FileAttributes.Normal);
 
-                // make sure we dont accidentally nuke file extension with changes
+                // make sure we don't accidentally nuke file extension with changes
                 if (settings.PreserveExtensions)
                     output_filename = Path.GetFileNameWithoutExtension(output_filename);
 
@@ -405,7 +405,7 @@ namespace FileRenamer
                         case "setprocessfiles": settings.ProcessFiles = bool.Parse(arguments[0]); break;
                         case "setmaxnamelength": settings.MaxNameLength = int.Parse(arguments[0]); break;
 
-                        // todo - fix quotes in parse instructions?
+                        // to-do - fix quotes in parse instructions?
 
                         case "setfiletypes": settings.FileTypes = arguments[0]; break;
                         case "setcase": settings.Case = arguments[0]; break;
@@ -467,7 +467,7 @@ namespace FileRenamer
 
             instruction = input.Substring(0, start).ToLower().Trim();
 
-            // advance one character so we dont include the '('
+            // advance one character so we don't include the '('
             start++;
 
             string buffer = input.Substring(start, end - start);

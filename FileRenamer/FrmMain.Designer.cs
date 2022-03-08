@@ -455,13 +455,13 @@ namespace FileRenamer
             this.rbtRemoveUrlEncoding.Name = "rbtRemoveUrlEncoding";
             this.rbtRemoveUrlEncoding.Size = new System.Drawing.Size(176, 21);
             this.rbtRemoveUrlEncoding.TabIndex = 39;
-            this.rbtRemoveUrlEncoding.TabStop = true;
             this.rbtRemoveUrlEncoding.Text = "Remove URL Encoding";
             this.rbtRemoveUrlEncoding.UseVisualStyleBackColor = true;
             // 
             // rbtTruncateWhiteSpace
             // 
             this.rbtTruncateWhiteSpace.AutoSize = true;
+            this.rbtTruncateWhiteSpace.Checked = true;
             this.rbtTruncateWhiteSpace.Location = new System.Drawing.Point(144, 16);
             this.rbtTruncateWhiteSpace.Margin = new System.Windows.Forms.Padding(4);
             this.rbtTruncateWhiteSpace.Name = "rbtTruncateWhiteSpace";
@@ -479,7 +479,6 @@ namespace FileRenamer
             this.rbtRemoveTrailingCharacter.Name = "rbtRemoveTrailingCharacter";
             this.rbtRemoveTrailingCharacter.Size = new System.Drawing.Size(198, 21);
             this.rbtRemoveTrailingCharacter.TabIndex = 37;
-            this.rbtRemoveTrailingCharacter.TabStop = true;
             this.rbtRemoveTrailingCharacter.Text = "Remove Trailing Character";
             this.rbtRemoveTrailingCharacter.UseVisualStyleBackColor = true;
             // 
@@ -491,7 +490,6 @@ namespace FileRenamer
             this.rbtRemoveLeadingCharacter.Name = "rbtRemoveLeadingCharacter";
             this.rbtRemoveLeadingCharacter.Size = new System.Drawing.Size(209, 21);
             this.rbtRemoveLeadingCharacter.TabIndex = 36;
-            this.rbtRemoveLeadingCharacter.TabStop = true;
             this.rbtRemoveLeadingCharacter.Text = "Remove Leading Characters";
             this.rbtRemoveLeadingCharacter.UseVisualStyleBackColor = true;
             // 
