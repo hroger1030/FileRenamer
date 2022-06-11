@@ -134,7 +134,7 @@ namespace FileRenamer
             this.lblCase.Location = new System.Drawing.Point(53, 22);
             this.lblCase.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCase.Name = "lblCase";
-            this.lblCase.Size = new System.Drawing.Size(81, 17);
+            this.lblCase.Size = new System.Drawing.Size(79, 16);
             this.lblCase.TabIndex = 0;
             this.lblCase.Text = "Name Case";
             // 
@@ -157,7 +157,7 @@ namespace FileRenamer
             this.lblFileTypeFilter.Location = new System.Drawing.Point(65, 52);
             this.lblFileTypeFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFileTypeFilter.Name = "lblFileTypeFilter";
-            this.lblFileTypeFilter.Size = new System.Drawing.Size(92, 17);
+            this.lblFileTypeFilter.Size = new System.Drawing.Size(87, 16);
             this.lblFileTypeFilter.TabIndex = 0;
             this.lblFileTypeFilter.Text = "Filetype Filter";
             // 
@@ -167,7 +167,7 @@ namespace FileRenamer
             this.lblSuffix.Location = new System.Drawing.Point(33, 52);
             this.lblSuffix.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSuffix.Name = "lblSuffix";
-            this.lblSuffix.Size = new System.Drawing.Size(101, 17);
+            this.lblSuffix.Size = new System.Drawing.Size(95, 16);
             this.lblSuffix.TabIndex = 3;
             this.lblSuffix.Tag = "";
             this.lblSuffix.Text = "Append to end";
@@ -188,7 +188,7 @@ namespace FileRenamer
             this.lblPrefix.Location = new System.Drawing.Point(29, 20);
             this.lblPrefix.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrefix.Name = "lblPrefix";
-            this.lblPrefix.Size = new System.Drawing.Size(106, 17);
+            this.lblPrefix.Size = new System.Drawing.Size(97, 16);
             this.lblPrefix.TabIndex = 2;
             this.lblPrefix.Tag = "";
             this.lblPrefix.Text = "Append to front";
@@ -232,7 +232,7 @@ namespace FileRenamer
             this.lblReplace.Location = new System.Drawing.Point(44, 52);
             this.lblReplace.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblReplace.Name = "lblReplace";
-            this.lblReplace.Size = new System.Drawing.Size(88, 17);
+            this.lblReplace.Size = new System.Drawing.Size(84, 16);
             this.lblReplace.TabIndex = 1;
             this.lblReplace.Tag = "";
             this.lblReplace.Text = "Replace with";
@@ -243,7 +243,7 @@ namespace FileRenamer
             this.lblFind.Location = new System.Drawing.Point(100, 18);
             this.lblFind.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFind.Name = "lblFind";
-            this.lblFind.Size = new System.Drawing.Size(35, 17);
+            this.lblFind.Size = new System.Drawing.Size(33, 16);
             this.lblFind.TabIndex = 0;
             this.lblFind.Text = "Find";
             // 
@@ -264,7 +264,7 @@ namespace FileRenamer
             this.chkCaseSensitive.Location = new System.Drawing.Point(144, 80);
             this.chkCaseSensitive.Margin = new System.Windows.Forms.Padding(4);
             this.chkCaseSensitive.Name = "chkCaseSensitive";
-            this.chkCaseSensitive.Size = new System.Drawing.Size(123, 21);
+            this.chkCaseSensitive.Size = new System.Drawing.Size(119, 20);
             this.chkCaseSensitive.TabIndex = 8;
             this.chkCaseSensitive.Text = "Case Sensitive";
             this.chkCaseSensitive.UseVisualStyleBackColor = true;
@@ -333,7 +333,7 @@ namespace FileRenamer
             this.rbtFindAndReplace.Location = new System.Drawing.Point(4, 21);
             this.rbtFindAndReplace.Margin = new System.Windows.Forms.Padding(4);
             this.rbtFindAndReplace.Name = "rbtFindAndReplace";
-            this.rbtFindAndReplace.Size = new System.Drawing.Size(282, 21);
+            this.rbtFindAndReplace.Size = new System.Drawing.Size(265, 20);
             this.rbtFindAndReplace.TabIndex = 30;
             this.rbtFindAndReplace.TabStop = true;
             this.rbtFindAndReplace.Text = "Find and replace characters in file name";
@@ -348,7 +348,7 @@ namespace FileRenamer
             this.panFindAndReplace.Controls.Add(this.cboReplace);
             this.panFindAndReplace.Controls.Add(this.lblFind);
             this.panFindAndReplace.Controls.Add(this.ddlFind);
-            this.panFindAndReplace.Location = new System.Drawing.Point(4, 50);
+            this.panFindAndReplace.Location = new System.Drawing.Point(4, 49);
             this.panFindAndReplace.Margin = new System.Windows.Forms.Padding(4);
             this.panFindAndReplace.Name = "panFindAndReplace";
             this.panFindAndReplace.Size = new System.Drawing.Size(629, 133);
@@ -360,7 +360,7 @@ namespace FileRenamer
             this.chkUseRegex.Location = new System.Drawing.Point(144, 108);
             this.chkUseRegex.Margin = new System.Windows.Forms.Padding(4);
             this.chkUseRegex.Name = "chkUseRegex";
-            this.chkUseRegex.Size = new System.Drawing.Size(99, 21);
+            this.chkUseRegex.Size = new System.Drawing.Size(97, 20);
             this.chkUseRegex.TabIndex = 9;
             this.chkUseRegex.Text = "Use Regex";
             this.chkUseRegex.UseVisualStyleBackColor = true;
@@ -380,10 +380,10 @@ namespace FileRenamer
             // rbtAppend
             // 
             this.rbtAppend.AutoSize = true;
-            this.rbtAppend.Location = new System.Drawing.Point(4, 191);
+            this.rbtAppend.Location = new System.Drawing.Point(4, 190);
             this.rbtAppend.Margin = new System.Windows.Forms.Padding(4);
             this.rbtAppend.Name = "rbtAppend";
-            this.rbtAppend.Size = new System.Drawing.Size(260, 21);
+            this.rbtAppend.Size = new System.Drawing.Size(244, 20);
             this.rbtAppend.TabIndex = 31;
             this.rbtAppend.TabStop = true;
             this.rbtAppend.Text = "Append to beginning or end of name";
@@ -396,7 +396,7 @@ namespace FileRenamer
             this.panAppend.Controls.Add(this.txtPrefix);
             this.panAppend.Controls.Add(this.lblPrefix);
             this.panAppend.Controls.Add(this.lblSuffix);
-            this.panAppend.Location = new System.Drawing.Point(4, 220);
+            this.panAppend.Location = new System.Drawing.Point(4, 218);
             this.panAppend.Margin = new System.Windows.Forms.Padding(4);
             this.panAppend.Name = "panAppend";
             this.panAppend.Size = new System.Drawing.Size(629, 85);
@@ -408,7 +408,7 @@ namespace FileRenamer
             this.rbtTrimCharacters.Location = new System.Drawing.Point(641, 4);
             this.rbtTrimCharacters.Margin = new System.Windows.Forms.Padding(4);
             this.rbtTrimCharacters.Name = "rbtTrimCharacters";
-            this.rbtTrimCharacters.Size = new System.Drawing.Size(199, 21);
+            this.rbtTrimCharacters.Size = new System.Drawing.Size(187, 20);
             this.rbtTrimCharacters.TabIndex = 35;
             this.rbtTrimCharacters.TabStop = true;
             this.rbtTrimCharacters.Text = "Trim characters from name";
@@ -423,7 +423,7 @@ namespace FileRenamer
             this.panTrimCharacters.Controls.Add(this.rbtTruncateWhiteSpace);
             this.panTrimCharacters.Controls.Add(this.rbtRemoveTrailingCharacter);
             this.panTrimCharacters.Controls.Add(this.rbtRemoveLeadingCharacter);
-            this.panTrimCharacters.Location = new System.Drawing.Point(641, 33);
+            this.panTrimCharacters.Location = new System.Drawing.Point(641, 32);
             this.panTrimCharacters.Margin = new System.Windows.Forms.Padding(4);
             this.panTrimCharacters.Name = "panTrimCharacters";
             this.panTrimCharacters.Size = new System.Drawing.Size(629, 132);
@@ -453,7 +453,7 @@ namespace FileRenamer
             this.rbtRemoveUrlEncoding.Location = new System.Drawing.Point(144, 101);
             this.rbtRemoveUrlEncoding.Margin = new System.Windows.Forms.Padding(4);
             this.rbtRemoveUrlEncoding.Name = "rbtRemoveUrlEncoding";
-            this.rbtRemoveUrlEncoding.Size = new System.Drawing.Size(176, 21);
+            this.rbtRemoveUrlEncoding.Size = new System.Drawing.Size(170, 20);
             this.rbtRemoveUrlEncoding.TabIndex = 39;
             this.rbtRemoveUrlEncoding.Text = "Remove URL Encoding";
             this.rbtRemoveUrlEncoding.UseVisualStyleBackColor = true;
@@ -465,7 +465,7 @@ namespace FileRenamer
             this.rbtTruncateWhiteSpace.Location = new System.Drawing.Point(144, 16);
             this.rbtTruncateWhiteSpace.Margin = new System.Windows.Forms.Padding(4);
             this.rbtTruncateWhiteSpace.Name = "rbtTruncateWhiteSpace";
-            this.rbtTruncateWhiteSpace.Size = new System.Drawing.Size(170, 21);
+            this.rbtTruncateWhiteSpace.Size = new System.Drawing.Size(161, 20);
             this.rbtTruncateWhiteSpace.TabIndex = 38;
             this.rbtTruncateWhiteSpace.TabStop = true;
             this.rbtTruncateWhiteSpace.Text = "Truncate White Space";
@@ -477,7 +477,7 @@ namespace FileRenamer
             this.rbtRemoveTrailingCharacter.Location = new System.Drawing.Point(144, 73);
             this.rbtRemoveTrailingCharacter.Margin = new System.Windows.Forms.Padding(4);
             this.rbtRemoveTrailingCharacter.Name = "rbtRemoveTrailingCharacter";
-            this.rbtRemoveTrailingCharacter.Size = new System.Drawing.Size(198, 21);
+            this.rbtRemoveTrailingCharacter.Size = new System.Drawing.Size(189, 20);
             this.rbtRemoveTrailingCharacter.TabIndex = 37;
             this.rbtRemoveTrailingCharacter.Text = "Remove Trailing Character";
             this.rbtRemoveTrailingCharacter.UseVisualStyleBackColor = true;
@@ -488,7 +488,7 @@ namespace FileRenamer
             this.rbtRemoveLeadingCharacter.Location = new System.Drawing.Point(144, 44);
             this.rbtRemoveLeadingCharacter.Margin = new System.Windows.Forms.Padding(4);
             this.rbtRemoveLeadingCharacter.Name = "rbtRemoveLeadingCharacter";
-            this.rbtRemoveLeadingCharacter.Size = new System.Drawing.Size(209, 21);
+            this.rbtRemoveLeadingCharacter.Size = new System.Drawing.Size(200, 20);
             this.rbtRemoveLeadingCharacter.TabIndex = 36;
             this.rbtRemoveLeadingCharacter.Text = "Remove Leading Characters";
             this.rbtRemoveLeadingCharacter.UseVisualStyleBackColor = true;
@@ -496,10 +496,10 @@ namespace FileRenamer
             // rbtRestrictLength
             // 
             this.rbtRestrictLength.AutoSize = true;
-            this.rbtRestrictLength.Location = new System.Drawing.Point(641, 173);
+            this.rbtRestrictLength.Location = new System.Drawing.Point(641, 172);
             this.rbtRestrictLength.Margin = new System.Windows.Forms.Padding(4);
             this.rbtRestrictLength.Name = "rbtRestrictLength";
-            this.rbtRestrictLength.Size = new System.Drawing.Size(181, 21);
+            this.rbtRestrictLength.Size = new System.Drawing.Size(169, 20);
             this.rbtRestrictLength.TabIndex = 36;
             this.rbtRestrictLength.TabStop = true;
             this.rbtRestrictLength.Text = "Restrict file name length";
@@ -510,7 +510,7 @@ namespace FileRenamer
             // 
             this.panRestrictLength.Controls.Add(this.nudMaxNameLength);
             this.panRestrictLength.Controls.Add(this.label1);
-            this.panRestrictLength.Location = new System.Drawing.Point(641, 202);
+            this.panRestrictLength.Location = new System.Drawing.Point(641, 200);
             this.panRestrictLength.Margin = new System.Windows.Forms.Padding(4);
             this.panRestrictLength.Name = "panRestrictLength";
             this.panRestrictLength.Size = new System.Drawing.Size(629, 48);
@@ -531,17 +531,17 @@ namespace FileRenamer
             this.label1.Location = new System.Drawing.Point(20, 14);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 17);
+            this.label1.Size = new System.Drawing.Size(107, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Maximum Length";
             // 
             // rbtChangeCase
             // 
             this.rbtChangeCase.AutoSize = true;
-            this.rbtChangeCase.Location = new System.Drawing.Point(641, 258);
+            this.rbtChangeCase.Location = new System.Drawing.Point(641, 256);
             this.rbtChangeCase.Margin = new System.Windows.Forms.Padding(4);
             this.rbtChangeCase.Name = "rbtChangeCase";
-            this.rbtChangeCase.Size = new System.Drawing.Size(173, 21);
+            this.rbtChangeCase.Size = new System.Drawing.Size(165, 20);
             this.rbtChangeCase.TabIndex = 38;
             this.rbtChangeCase.TabStop = true;
             this.rbtChangeCase.Text = "Change file name case";
@@ -564,7 +564,7 @@ namespace FileRenamer
             this.rbtRunScript.Location = new System.Drawing.Point(1278, 64);
             this.rbtRunScript.Margin = new System.Windows.Forms.Padding(4);
             this.rbtRunScript.Name = "rbtRunScript";
-            this.rbtRunScript.Size = new System.Drawing.Size(157, 21);
+            this.rbtRunScript.Size = new System.Drawing.Size(147, 20);
             this.rbtRunScript.TabIndex = 40;
             this.rbtRunScript.TabStop = true;
             this.rbtRunScript.Text = "Run a rename script";
@@ -575,7 +575,7 @@ namespace FileRenamer
             // 
             this.panRunScript.Controls.Add(this.btnSelectScript);
             this.panRunScript.Controls.Add(this.cboScriptList);
-            this.panRunScript.Location = new System.Drawing.Point(1278, 93);
+            this.panRunScript.Location = new System.Drawing.Point(1278, 92);
             this.panRunScript.Margin = new System.Windows.Forms.Padding(4);
             this.panRunScript.Name = "panRunScript";
             this.panRunScript.Size = new System.Drawing.Size(629, 66);
@@ -606,10 +606,10 @@ namespace FileRenamer
             // chkRecursive
             // 
             this.chkRecursive.AutoSize = true;
-            this.chkRecursive.Location = new System.Drawing.Point(4, 62);
+            this.chkRecursive.Location = new System.Drawing.Point(4, 60);
             this.chkRecursive.Margin = new System.Windows.Forms.Padding(4);
             this.chkRecursive.Name = "chkRecursive";
-            this.chkRecursive.Size = new System.Drawing.Size(176, 21);
+            this.chkRecursive.Size = new System.Drawing.Size(169, 20);
             this.chkRecursive.TabIndex = 10;
             this.chkRecursive.Text = "Process Subdirectories";
             this.chkRecursive.UseVisualStyleBackColor = true;
@@ -617,10 +617,10 @@ namespace FileRenamer
             // chkLogChanges
             // 
             this.chkLogChanges.AutoSize = true;
-            this.chkLogChanges.Location = new System.Drawing.Point(400, 4);
+            this.chkLogChanges.Location = new System.Drawing.Point(383, 4);
             this.chkLogChanges.Margin = new System.Windows.Forms.Padding(4);
             this.chkLogChanges.Name = "chkLogChanges";
-            this.chkLogChanges.Size = new System.Drawing.Size(171, 21);
+            this.chkLogChanges.Size = new System.Drawing.Size(161, 20);
             this.chkLogChanges.TabIndex = 12;
             this.chkLogChanges.Text = "Generate Change Log";
             this.chkLogChanges.UseVisualStyleBackColor = true;
@@ -628,10 +628,10 @@ namespace FileRenamer
             // chkLowerExtensions
             // 
             this.chkLowerExtensions.AutoSize = true;
-            this.chkLowerExtensions.Location = new System.Drawing.Point(188, 4);
+            this.chkLowerExtensions.Location = new System.Drawing.Point(181, 4);
             this.chkLowerExtensions.Margin = new System.Windows.Forms.Padding(4);
             this.chkLowerExtensions.Name = "chkLowerExtensions";
-            this.chkLowerExtensions.Size = new System.Drawing.Size(204, 21);
+            this.chkLowerExtensions.Size = new System.Drawing.Size(194, 20);
             this.chkLowerExtensions.TabIndex = 15;
             this.chkLowerExtensions.Text = "Standardize File Extensions";
             this.chkLowerExtensions.UseVisualStyleBackColor = true;
@@ -652,10 +652,10 @@ namespace FileRenamer
             // chkCreatePlaylist
             // 
             this.chkCreatePlaylist.AutoSize = true;
-            this.chkCreatePlaylist.Location = new System.Drawing.Point(400, 33);
+            this.chkCreatePlaylist.Location = new System.Drawing.Point(383, 32);
             this.chkCreatePlaylist.Margin = new System.Windows.Forms.Padding(4);
             this.chkCreatePlaylist.Name = "chkCreatePlaylist";
-            this.chkCreatePlaylist.Size = new System.Drawing.Size(120, 21);
+            this.chkCreatePlaylist.Size = new System.Drawing.Size(115, 20);
             this.chkCreatePlaylist.TabIndex = 28;
             this.chkCreatePlaylist.Tag = "";
             this.chkCreatePlaylist.Text = "Create Playlist";
@@ -664,10 +664,10 @@ namespace FileRenamer
             // chkStandardizeFileProperties
             // 
             this.chkStandardizeFileProperties.AutoSize = true;
-            this.chkStandardizeFileProperties.Location = new System.Drawing.Point(188, 62);
+            this.chkStandardizeFileProperties.Location = new System.Drawing.Point(181, 60);
             this.chkStandardizeFileProperties.Margin = new System.Windows.Forms.Padding(4);
             this.chkStandardizeFileProperties.Name = "chkStandardizeFileProperties";
-            this.chkStandardizeFileProperties.Size = new System.Drawing.Size(201, 21);
+            this.chkStandardizeFileProperties.Size = new System.Drawing.Size(191, 20);
             this.chkStandardizeFileProperties.TabIndex = 29;
             this.chkStandardizeFileProperties.Tag = "";
             this.chkStandardizeFileProperties.Text = "Standardize File Properties";
@@ -676,10 +676,10 @@ namespace FileRenamer
             // chkProcessFiles
             // 
             this.chkProcessFiles.AutoSize = true;
-            this.chkProcessFiles.Location = new System.Drawing.Point(4, 33);
+            this.chkProcessFiles.Location = new System.Drawing.Point(4, 32);
             this.chkProcessFiles.Margin = new System.Windows.Forms.Padding(4);
             this.chkProcessFiles.Name = "chkProcessFiles";
-            this.chkProcessFiles.Size = new System.Drawing.Size(114, 21);
+            this.chkProcessFiles.Size = new System.Drawing.Size(111, 20);
             this.chkProcessFiles.TabIndex = 30;
             this.chkProcessFiles.Tag = "";
             this.chkProcessFiles.Text = "Process Files";
@@ -691,7 +691,7 @@ namespace FileRenamer
             this.chkProcessDirectories.Location = new System.Drawing.Point(4, 4);
             this.chkProcessDirectories.Margin = new System.Windows.Forms.Padding(4);
             this.chkProcessDirectories.Name = "chkProcessDirectories";
-            this.chkProcessDirectories.Size = new System.Drawing.Size(153, 21);
+            this.chkProcessDirectories.Size = new System.Drawing.Size(147, 20);
             this.chkProcessDirectories.TabIndex = 31;
             this.chkProcessDirectories.Tag = "";
             this.chkProcessDirectories.Text = "Process Directories";
@@ -719,10 +719,10 @@ namespace FileRenamer
             // chkPreserveExtensions
             // 
             this.chkPreserveExtensions.AutoSize = true;
-            this.chkPreserveExtensions.Location = new System.Drawing.Point(188, 33);
+            this.chkPreserveExtensions.Location = new System.Drawing.Point(181, 32);
             this.chkPreserveExtensions.Margin = new System.Windows.Forms.Padding(4);
             this.chkPreserveExtensions.Name = "chkPreserveExtensions";
-            this.chkPreserveExtensions.Size = new System.Drawing.Size(178, 21);
+            this.chkPreserveExtensions.Size = new System.Drawing.Size(170, 20);
             this.chkPreserveExtensions.TabIndex = 31;
             this.chkPreserveExtensions.Tag = "";
             this.chkPreserveExtensions.Text = "Preserve File Extension";
