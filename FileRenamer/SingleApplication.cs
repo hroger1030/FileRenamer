@@ -14,20 +14,20 @@ namespace Utilities
         // http://www.codeproject.com/KB/cs/singleinstance.aspx
 
         [DllImport("user32.dll")]
-        private static extern int ShowWindow(IntPtr hWnd, int nCmdShow);
+        public static extern int ShowWindow(IntPtr hWnd, int nCmdShow);
 
         [DllImport("user32.dll")]
-        private static extern int SetForegroundWindow(IntPtr hWnd);
+        public static extern int SetForegroundWindow(IntPtr hWnd);
 
         [DllImport("user32.dll")]
-        private static extern int IsIconic(IntPtr hWnd);
+        public static extern int IsIconic(IntPtr hWnd);
 
-        private static Mutex _Mutex;
-        private const int SW_RESTORE = 9;
+        public static Mutex _Mutex;
+        public const int SW_RESTORE = 9;
 
         public SingleApplication() { }
 
-        private static IntPtr GetCurrentInstanceWindowHandle()
+        public static IntPtr GetCurrentInstanceWindowHandle()
         {
             IntPtr hWnd = IntPtr.Zero;
             Process current_process = Process.GetCurrentProcess();
@@ -50,7 +50,7 @@ namespace Utilities
             }
             return hWnd;
         }
-        private static void CloseAllExistingProcessInstances()
+        public static void CloseAllExistingProcessInstances()
         {
             IntPtr hWnd = IntPtr.Zero;
             Process current_process = Process.GetCurrentProcess();
@@ -70,7 +70,7 @@ namespace Utilities
         /// <summary>
         /// SwitchToCurrentInstance
         /// </summary>
-        private static void SwitchToCurrentInstance()
+        public static void SwitchToCurrentInstance()
         {
             IntPtr hWnd = GetCurrentInstanceWindowHandle();
 
@@ -135,7 +135,7 @@ namespace Utilities
         /// check if given executable is already running or not
         /// </summary>
         /// <returns>returns true if already running</returns>
-        private static bool IsAlreadyRunning()
+        public static bool IsAlreadyRunning()
         {
             string assembly_location = Assembly.GetExecutingAssembly().Location;
             FileSystemInfo file_info = new FileInfo(assembly_location);
