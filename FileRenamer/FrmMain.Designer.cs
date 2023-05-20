@@ -29,748 +29,737 @@ namespace FileRenamer
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnSelectDirectory = new System.Windows.Forms.Button();
-            this.cboCase = new System.Windows.Forms.ComboBox();
-            this.lblCase = new System.Windows.Forms.Label();
-            this.btnProcessFiles = new System.Windows.Forms.Button();
-            this.lblFileTypeFilter = new System.Windows.Forms.Label();
-            this.lblSuffix = new System.Windows.Forms.Label();
-            this.txtSuffix = new System.Windows.Forms.TextBox();
-            this.lblPrefix = new System.Windows.Forms.Label();
-            this.txtPrefix = new System.Windows.Forms.TextBox();
-            this.cboReplace = new System.Windows.Forms.ComboBox();
-            this.cboSelectedDirectory = new System.Windows.Forms.ComboBox();
-            this.lblReplace = new System.Windows.Forms.Label();
-            this.lblFind = new System.Windows.Forms.Label();
-            this.lblFilesRenamed = new System.Windows.Forms.Label();
-            this.chkCaseSensitive = new System.Windows.Forms.CheckBox();
-            this.cboFileTypes = new System.Windows.Forms.ComboBox();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.flpOptions = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblTargetText = new System.Windows.Forms.Label();
-            this.rbtFindAndReplace = new System.Windows.Forms.RadioButton();
-            this.panFindAndReplace = new System.Windows.Forms.Panel();
-            this.chkUseRegex = new System.Windows.Forms.CheckBox();
-            this.ddlFind = new System.Windows.Forms.ComboBox();
-            this.rbtAppend = new System.Windows.Forms.RadioButton();
-            this.panAppend = new System.Windows.Forms.Panel();
-            this.rbtTrimCharacters = new System.Windows.Forms.RadioButton();
-            this.panTrimCharacters = new System.Windows.Forms.Panel();
-            this.nudRemoveTrailingCharacters = new System.Windows.Forms.NumericUpDown();
-            this.nudRemoveLeadingCharacters = new System.Windows.Forms.NumericUpDown();
-            this.rbtRemoveUrlEncoding = new System.Windows.Forms.RadioButton();
-            this.rbtTruncateWhiteSpace = new System.Windows.Forms.RadioButton();
-            this.rbtRemoveTrailingCharacter = new System.Windows.Forms.RadioButton();
-            this.rbtRemoveLeadingCharacter = new System.Windows.Forms.RadioButton();
-            this.rbtRestrictLength = new System.Windows.Forms.RadioButton();
-            this.panRestrictLength = new System.Windows.Forms.Panel();
-            this.nudMaxNameLength = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.rbtChangeCase = new System.Windows.Forms.RadioButton();
-            this.panChangeCase = new System.Windows.Forms.Panel();
-            this.rbtRunScript = new System.Windows.Forms.RadioButton();
-            this.panRunScript = new System.Windows.Forms.Panel();
-            this.btnSelectScript = new System.Windows.Forms.Button();
-            this.cboScriptList = new System.Windows.Forms.ComboBox();
-            this.chkRecursive = new System.Windows.Forms.CheckBox();
-            this.chkLogChanges = new System.Windows.Forms.CheckBox();
-            this.chkLowerExtensions = new System.Windows.Forms.CheckBox();
-            this.btnAbout = new System.Windows.Forms.Button();
-            this.chkCreatePlaylist = new System.Windows.Forms.CheckBox();
-            this.chkStandardizeFileProperties = new System.Windows.Forms.CheckBox();
-            this.chkProcessFiles = new System.Windows.Forms.CheckBox();
-            this.chkProcessDirectories = new System.Windows.Forms.CheckBox();
-            this.flpCheckBoxGrid = new System.Windows.Forms.FlowLayoutPanel();
-            this.chkPreserveExtensions = new System.Windows.Forms.CheckBox();
-            this.flpOptions.SuspendLayout();
-            this.panFindAndReplace.SuspendLayout();
-            this.panAppend.SuspendLayout();
-            this.panTrimCharacters.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudRemoveTrailingCharacters)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudRemoveLeadingCharacters)).BeginInit();
-            this.panRestrictLength.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxNameLength)).BeginInit();
-            this.panChangeCase.SuspendLayout();
-            this.panRunScript.SuspendLayout();
-            this.flpCheckBoxGrid.SuspendLayout();
-            this.SuspendLayout();
+            btnExit = new Button();
+            btnSelectDirectory = new Button();
+            cboCase = new ComboBox();
+            lblCase = new Label();
+            btnProcessFiles = new Button();
+            lblFileTypeFilter = new Label();
+            lblSuffix = new Label();
+            txtSuffix = new TextBox();
+            lblPrefix = new Label();
+            txtPrefix = new TextBox();
+            cboReplace = new ComboBox();
+            cboSelectedDirectory = new ComboBox();
+            lblReplace = new Label();
+            lblFind = new Label();
+            lblFilesRenamed = new Label();
+            chkCaseSensitive = new CheckBox();
+            cboFileTypes = new ComboBox();
+            btnReset = new Button();
+            flpOptions = new FlowLayoutPanel();
+            lblTargetText = new Label();
+            rbtFindAndReplace = new RadioButton();
+            panFindAndReplace = new Panel();
+            chkUseRegex = new CheckBox();
+            ddlFind = new ComboBox();
+            rbtAppend = new RadioButton();
+            panAppend = new Panel();
+            rbtTrimCharacters = new RadioButton();
+            panTrimCharacters = new Panel();
+            nudRemoveTrailingCharacters = new NumericUpDown();
+            nudRemoveLeadingCharacters = new NumericUpDown();
+            rbtRemoveUrlEncoding = new RadioButton();
+            rbtTruncateWhiteSpace = new RadioButton();
+            rbtRemoveTrailingCharacter = new RadioButton();
+            rbtRemoveLeadingCharacter = new RadioButton();
+            rbtRestrictLength = new RadioButton();
+            panRestrictLength = new Panel();
+            nudMaxNameLength = new NumericUpDown();
+            label1 = new Label();
+            rbtChangeCase = new RadioButton();
+            panChangeCase = new Panel();
+            rbtRunScript = new RadioButton();
+            panRunScript = new Panel();
+            btnSelectScript = new Button();
+            cboScriptList = new ComboBox();
+            chkRecursive = new CheckBox();
+            chkLogChanges = new CheckBox();
+            chkLowerExtensions = new CheckBox();
+            btnAbout = new Button();
+            chkCreatePlaylist = new CheckBox();
+            chkStandardizeFileProperties = new CheckBox();
+            chkProcessFiles = new CheckBox();
+            chkProcessDirectories = new CheckBox();
+            flpCheckBoxGrid = new FlowLayoutPanel();
+            chkPreserveExtensions = new CheckBox();
+            flpOptions.SuspendLayout();
+            panFindAndReplace.SuspendLayout();
+            panAppend.SuspendLayout();
+            panTrimCharacters.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudRemoveTrailingCharacters).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudRemoveLeadingCharacters).BeginInit();
+            panRestrictLength.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudMaxNameLength).BeginInit();
+            panChangeCase.SuspendLayout();
+            panRunScript.SuspendLayout();
+            flpCheckBoxGrid.SuspendLayout();
+            SuspendLayout();
             // 
             // btnExit
             // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.Location = new System.Drawing.Point(587, 520);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(4);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(100, 28);
-            this.btnExit.TabIndex = 25;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            btnExit.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnExit.Location = new Point(514, 488);
+            btnExit.Margin = new Padding(4);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(88, 26);
+            btnExit.TabIndex = 25;
+            btnExit.Text = "Exit";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // btnSelectDirectory
             // 
-            this.btnSelectDirectory.Location = new System.Drawing.Point(16, 15);
-            this.btnSelectDirectory.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSelectDirectory.Name = "btnSelectDirectory";
-            this.btnSelectDirectory.Size = new System.Drawing.Size(140, 26);
-            this.btnSelectDirectory.TabIndex = 4;
-            this.btnSelectDirectory.Text = "Select Directory";
-            this.btnSelectDirectory.UseVisualStyleBackColor = true;
-            this.btnSelectDirectory.Click += new System.EventHandler(this.btnSelectDirectory_Click);
+            btnSelectDirectory.Location = new Point(14, 14);
+            btnSelectDirectory.Margin = new Padding(4);
+            btnSelectDirectory.Name = "btnSelectDirectory";
+            btnSelectDirectory.Size = new Size(122, 24);
+            btnSelectDirectory.TabIndex = 4;
+            btnSelectDirectory.Text = "Select Directory";
+            btnSelectDirectory.UseVisualStyleBackColor = true;
+            btnSelectDirectory.Click += btnSelectDirectory_Click;
             // 
             // cboCase
             // 
-            this.cboCase.FormattingEnabled = true;
-            this.cboCase.Location = new System.Drawing.Point(144, 18);
-            this.cboCase.Margin = new System.Windows.Forms.Padding(4);
-            this.cboCase.Name = "cboCase";
-            this.cboCase.Size = new System.Drawing.Size(219, 24);
-            this.cboCase.TabIndex = 7;
+            cboCase.FormattingEnabled = true;
+            cboCase.Location = new Point(126, 17);
+            cboCase.Margin = new Padding(4);
+            cboCase.Name = "cboCase";
+            cboCase.Size = new Size(192, 23);
+            cboCase.TabIndex = 7;
             // 
             // lblCase
             // 
-            this.lblCase.AutoSize = true;
-            this.lblCase.Location = new System.Drawing.Point(53, 22);
-            this.lblCase.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCase.Name = "lblCase";
-            this.lblCase.Size = new System.Drawing.Size(79, 16);
-            this.lblCase.TabIndex = 0;
-            this.lblCase.Text = "Name Case";
+            lblCase.AutoSize = true;
+            lblCase.Location = new Point(46, 21);
+            lblCase.Margin = new Padding(4, 0, 4, 0);
+            lblCase.Name = "lblCase";
+            lblCase.Size = new Size(67, 15);
+            lblCase.TabIndex = 0;
+            lblCase.Text = "Name Case";
             // 
             // btnProcessFiles
             // 
-            this.btnProcessFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProcessFiles.Enabled = false;
-            this.btnProcessFiles.Location = new System.Drawing.Point(263, 520);
-            this.btnProcessFiles.Margin = new System.Windows.Forms.Padding(4);
-            this.btnProcessFiles.Name = "btnProcessFiles";
-            this.btnProcessFiles.Size = new System.Drawing.Size(100, 28);
-            this.btnProcessFiles.TabIndex = 22;
-            this.btnProcessFiles.Text = "Process";
-            this.btnProcessFiles.UseVisualStyleBackColor = true;
-            this.btnProcessFiles.Click += new System.EventHandler(this.btnProcessFiles_Click);
+            btnProcessFiles.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnProcessFiles.Enabled = false;
+            btnProcessFiles.Location = new Point(230, 488);
+            btnProcessFiles.Margin = new Padding(4);
+            btnProcessFiles.Name = "btnProcessFiles";
+            btnProcessFiles.Size = new Size(88, 26);
+            btnProcessFiles.TabIndex = 22;
+            btnProcessFiles.Text = "Process";
+            btnProcessFiles.UseVisualStyleBackColor = true;
+            btnProcessFiles.Click += btnProcessFiles_Click;
             // 
             // lblFileTypeFilter
             // 
-            this.lblFileTypeFilter.AutoSize = true;
-            this.lblFileTypeFilter.Location = new System.Drawing.Point(65, 52);
-            this.lblFileTypeFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFileTypeFilter.Name = "lblFileTypeFilter";
-            this.lblFileTypeFilter.Size = new System.Drawing.Size(87, 16);
-            this.lblFileTypeFilter.TabIndex = 0;
-            this.lblFileTypeFilter.Text = "Filetype Filter";
+            lblFileTypeFilter.AutoSize = true;
+            lblFileTypeFilter.Location = new Point(57, 49);
+            lblFileTypeFilter.Margin = new Padding(4, 0, 4, 0);
+            lblFileTypeFilter.Name = "lblFileTypeFilter";
+            lblFileTypeFilter.Size = new Size(77, 15);
+            lblFileTypeFilter.TabIndex = 0;
+            lblFileTypeFilter.Text = "Filetype Filter";
             // 
             // lblSuffix
             // 
-            this.lblSuffix.AutoSize = true;
-            this.lblSuffix.Location = new System.Drawing.Point(33, 52);
-            this.lblSuffix.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSuffix.Name = "lblSuffix";
-            this.lblSuffix.Size = new System.Drawing.Size(95, 16);
-            this.lblSuffix.TabIndex = 3;
-            this.lblSuffix.Tag = "";
-            this.lblSuffix.Text = "Append to end";
+            lblSuffix.AutoSize = true;
+            lblSuffix.Location = new Point(29, 49);
+            lblSuffix.Margin = new Padding(4, 0, 4, 0);
+            lblSuffix.Name = "lblSuffix";
+            lblSuffix.Size = new Size(86, 15);
+            lblSuffix.TabIndex = 3;
+            lblSuffix.Tag = "";
+            lblSuffix.Text = "Append to end";
             // 
             // txtSuffix
             // 
-            this.txtSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSuffix.Location = new System.Drawing.Point(144, 48);
-            this.txtSuffix.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSuffix.Name = "txtSuffix";
-            this.txtSuffix.Size = new System.Drawing.Size(464, 22);
-            this.txtSuffix.TabIndex = 3;
+            txtSuffix.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtSuffix.Location = new Point(126, 45);
+            txtSuffix.Margin = new Padding(4);
+            txtSuffix.Name = "txtSuffix";
+            txtSuffix.Size = new Size(406, 23);
+            txtSuffix.TabIndex = 3;
             // 
             // lblPrefix
             // 
-            this.lblPrefix.AutoSize = true;
-            this.lblPrefix.Location = new System.Drawing.Point(29, 20);
-            this.lblPrefix.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPrefix.Name = "lblPrefix";
-            this.lblPrefix.Size = new System.Drawing.Size(97, 16);
-            this.lblPrefix.TabIndex = 2;
-            this.lblPrefix.Tag = "";
-            this.lblPrefix.Text = "Append to front";
+            lblPrefix.AutoSize = true;
+            lblPrefix.Location = new Point(25, 19);
+            lblPrefix.Margin = new Padding(4, 0, 4, 0);
+            lblPrefix.Name = "lblPrefix";
+            lblPrefix.Size = new Size(92, 15);
+            lblPrefix.TabIndex = 2;
+            lblPrefix.Tag = "";
+            lblPrefix.Text = "Append to front";
             // 
             // txtPrefix
             // 
-            this.txtPrefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPrefix.Location = new System.Drawing.Point(144, 16);
-            this.txtPrefix.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPrefix.Name = "txtPrefix";
-            this.txtPrefix.Size = new System.Drawing.Size(464, 22);
-            this.txtPrefix.TabIndex = 2;
+            txtPrefix.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtPrefix.Location = new Point(126, 15);
+            txtPrefix.Margin = new Padding(4);
+            txtPrefix.Name = "txtPrefix";
+            txtPrefix.Size = new Size(406, 23);
+            txtPrefix.TabIndex = 2;
             // 
             // cboReplace
             // 
-            this.cboReplace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboReplace.FormattingEnabled = true;
-            this.cboReplace.Location = new System.Drawing.Point(144, 48);
-            this.cboReplace.Margin = new System.Windows.Forms.Padding(4);
-            this.cboReplace.Name = "cboReplace";
-            this.cboReplace.Size = new System.Drawing.Size(464, 24);
-            this.cboReplace.TabIndex = 1;
+            cboReplace.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cboReplace.FormattingEnabled = true;
+            cboReplace.Location = new Point(126, 45);
+            cboReplace.Margin = new Padding(4);
+            cboReplace.Name = "cboReplace";
+            cboReplace.Size = new Size(406, 23);
+            cboReplace.TabIndex = 1;
             // 
             // cboSelectedDirectory
             // 
-            this.cboSelectedDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboSelectedDirectory.FormattingEnabled = true;
-            this.cboSelectedDirectory.Location = new System.Drawing.Point(164, 15);
-            this.cboSelectedDirectory.Margin = new System.Windows.Forms.Padding(4);
-            this.cboSelectedDirectory.Name = "cboSelectedDirectory";
-            this.cboSelectedDirectory.Size = new System.Drawing.Size(522, 24);
-            this.cboSelectedDirectory.TabIndex = 5;
-            this.cboSelectedDirectory.TextChanged += new System.EventHandler(this.cboSelectedDirectory_TextChanged);
+            cboSelectedDirectory.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cboSelectedDirectory.FormattingEnabled = true;
+            cboSelectedDirectory.Location = new Point(144, 14);
+            cboSelectedDirectory.Margin = new Padding(4);
+            cboSelectedDirectory.Name = "cboSelectedDirectory";
+            cboSelectedDirectory.Size = new Size(457, 23);
+            cboSelectedDirectory.TabIndex = 5;
+            cboSelectedDirectory.TextChanged += cboSelectedDirectory_TextChanged;
             // 
             // lblReplace
             // 
-            this.lblReplace.AutoSize = true;
-            this.lblReplace.Location = new System.Drawing.Point(44, 52);
-            this.lblReplace.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblReplace.Name = "lblReplace";
-            this.lblReplace.Size = new System.Drawing.Size(84, 16);
-            this.lblReplace.TabIndex = 1;
-            this.lblReplace.Tag = "";
-            this.lblReplace.Text = "Replace with";
+            lblReplace.AutoSize = true;
+            lblReplace.Location = new Point(38, 49);
+            lblReplace.Margin = new Padding(4, 0, 4, 0);
+            lblReplace.Name = "lblReplace";
+            lblReplace.Size = new Size(74, 15);
+            lblReplace.TabIndex = 1;
+            lblReplace.Tag = "";
+            lblReplace.Text = "Replace with";
             // 
             // lblFind
             // 
-            this.lblFind.AutoSize = true;
-            this.lblFind.Location = new System.Drawing.Point(100, 18);
-            this.lblFind.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFind.Name = "lblFind";
-            this.lblFind.Size = new System.Drawing.Size(33, 16);
-            this.lblFind.TabIndex = 0;
-            this.lblFind.Text = "Find";
+            lblFind.AutoSize = true;
+            lblFind.Location = new Point(88, 17);
+            lblFind.Margin = new Padding(4, 0, 4, 0);
+            lblFind.Name = "lblFind";
+            lblFind.Size = new Size(30, 15);
+            lblFind.TabIndex = 0;
+            lblFind.Text = "Find";
             // 
             // lblFilesRenamed
             // 
-            this.lblFilesRenamed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFilesRenamed.Location = new System.Drawing.Point(12, 526);
-            this.lblFilesRenamed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFilesRenamed.Name = "lblFilesRenamed";
-            this.lblFilesRenamed.Size = new System.Drawing.Size(243, 22);
-            this.lblFilesRenamed.TabIndex = 0;
-            this.lblFilesRenamed.Text = "lblFilesRenamed";
+            lblFilesRenamed.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblFilesRenamed.Location = new Point(10, 493);
+            lblFilesRenamed.Margin = new Padding(4, 0, 4, 0);
+            lblFilesRenamed.Name = "lblFilesRenamed";
+            lblFilesRenamed.Size = new Size(213, 21);
+            lblFilesRenamed.TabIndex = 0;
+            lblFilesRenamed.Text = "lblFilesRenamed";
             // 
             // chkCaseSensitive
             // 
-            this.chkCaseSensitive.AutoSize = true;
-            this.chkCaseSensitive.Location = new System.Drawing.Point(144, 80);
-            this.chkCaseSensitive.Margin = new System.Windows.Forms.Padding(4);
-            this.chkCaseSensitive.Name = "chkCaseSensitive";
-            this.chkCaseSensitive.Size = new System.Drawing.Size(119, 20);
-            this.chkCaseSensitive.TabIndex = 8;
-            this.chkCaseSensitive.Text = "Case Sensitive";
-            this.chkCaseSensitive.UseVisualStyleBackColor = true;
+            chkCaseSensitive.AutoSize = true;
+            chkCaseSensitive.Location = new Point(126, 75);
+            chkCaseSensitive.Margin = new Padding(4);
+            chkCaseSensitive.Name = "chkCaseSensitive";
+            chkCaseSensitive.Size = new Size(100, 19);
+            chkCaseSensitive.TabIndex = 8;
+            chkCaseSensitive.Text = "Case Sensitive";
+            chkCaseSensitive.UseVisualStyleBackColor = true;
             // 
             // cboFileTypes
             // 
-            this.cboFileTypes.FormattingEnabled = true;
-            this.cboFileTypes.Location = new System.Drawing.Point(164, 48);
-            this.cboFileTypes.Margin = new System.Windows.Forms.Padding(4);
-            this.cboFileTypes.Name = "cboFileTypes";
-            this.cboFileTypes.Size = new System.Drawing.Size(244, 24);
-            this.cboFileTypes.TabIndex = 6;
+            cboFileTypes.FormattingEnabled = true;
+            cboFileTypes.Location = new Point(144, 45);
+            cboFileTypes.Margin = new Padding(4);
+            cboFileTypes.Name = "cboFileTypes";
+            cboFileTypes.Size = new Size(214, 23);
+            cboFileTypes.TabIndex = 6;
             // 
             // btnReset
             // 
-            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReset.Location = new System.Drawing.Point(371, 520);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(4);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(100, 28);
-            this.btnReset.TabIndex = 23;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            btnReset.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnReset.Location = new Point(325, 488);
+            btnReset.Margin = new Padding(4);
+            btnReset.Name = "btnReset";
+            btnReset.Size = new Size(88, 26);
+            btnReset.TabIndex = 23;
+            btnReset.Text = "Reset";
+            btnReset.UseVisualStyleBackColor = true;
+            btnReset.Click += btnReset_Click;
             // 
             // flpOptions
             // 
-            this.flpOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flpOptions.AutoScroll = true;
-            this.flpOptions.Controls.Add(this.lblTargetText);
-            this.flpOptions.Controls.Add(this.rbtFindAndReplace);
-            this.flpOptions.Controls.Add(this.panFindAndReplace);
-            this.flpOptions.Controls.Add(this.rbtAppend);
-            this.flpOptions.Controls.Add(this.panAppend);
-            this.flpOptions.Controls.Add(this.rbtTrimCharacters);
-            this.flpOptions.Controls.Add(this.panTrimCharacters);
-            this.flpOptions.Controls.Add(this.rbtRestrictLength);
-            this.flpOptions.Controls.Add(this.panRestrictLength);
-            this.flpOptions.Controls.Add(this.rbtChangeCase);
-            this.flpOptions.Controls.Add(this.panChangeCase);
-            this.flpOptions.Controls.Add(this.rbtRunScript);
-            this.flpOptions.Controls.Add(this.panRunScript);
-            this.flpOptions.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpOptions.Location = new System.Drawing.Point(16, 181);
-            this.flpOptions.Margin = new System.Windows.Forms.Padding(4);
-            this.flpOptions.Name = "flpOptions";
-            this.flpOptions.Size = new System.Drawing.Size(671, 332);
-            this.flpOptions.TabIndex = 9;
+            flpOptions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            flpOptions.AutoScroll = true;
+            flpOptions.Controls.Add(lblTargetText);
+            flpOptions.Controls.Add(rbtFindAndReplace);
+            flpOptions.Controls.Add(panFindAndReplace);
+            flpOptions.Controls.Add(rbtAppend);
+            flpOptions.Controls.Add(panAppend);
+            flpOptions.Controls.Add(rbtTrimCharacters);
+            flpOptions.Controls.Add(panTrimCharacters);
+            flpOptions.Controls.Add(rbtRestrictLength);
+            flpOptions.Controls.Add(panRestrictLength);
+            flpOptions.Controls.Add(rbtChangeCase);
+            flpOptions.Controls.Add(panChangeCase);
+            flpOptions.Controls.Add(rbtRunScript);
+            flpOptions.Controls.Add(panRunScript);
+            flpOptions.FlowDirection = FlowDirection.TopDown;
+            flpOptions.Location = new Point(14, 170);
+            flpOptions.Margin = new Padding(4);
+            flpOptions.Name = "flpOptions";
+            flpOptions.Size = new Size(587, 311);
+            flpOptions.TabIndex = 9;
             // 
             // lblTargetText
             // 
-            this.lblTargetText.AutoSize = true;
-            this.lblTargetText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTargetText.Location = new System.Drawing.Point(4, 0);
-            this.lblTargetText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTargetText.Name = "lblTargetText";
-            this.lblTargetText.Size = new System.Drawing.Size(84, 17);
-            this.lblTargetText.TabIndex = 28;
-            this.lblTargetText.Text = "I want to...";
+            lblTargetText.AutoSize = true;
+            lblTargetText.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTargetText.Location = new Point(4, 0);
+            lblTargetText.Margin = new Padding(4, 0, 4, 0);
+            lblTargetText.Name = "lblTargetText";
+            lblTargetText.Size = new Size(69, 13);
+            lblTargetText.TabIndex = 28;
+            lblTargetText.Text = "I want to...";
             // 
             // rbtFindAndReplace
             // 
-            this.rbtFindAndReplace.AutoSize = true;
-            this.rbtFindAndReplace.Location = new System.Drawing.Point(4, 21);
-            this.rbtFindAndReplace.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtFindAndReplace.Name = "rbtFindAndReplace";
-            this.rbtFindAndReplace.Size = new System.Drawing.Size(265, 20);
-            this.rbtFindAndReplace.TabIndex = 30;
-            this.rbtFindAndReplace.TabStop = true;
-            this.rbtFindAndReplace.Text = "Find and replace characters in file name";
-            this.rbtFindAndReplace.UseVisualStyleBackColor = true;
-            this.rbtFindAndReplace.CheckedChanged += new System.EventHandler(this.rbtFindAndReplace_CheckedChanged);
+            rbtFindAndReplace.AutoSize = true;
+            rbtFindAndReplace.Location = new Point(4, 17);
+            rbtFindAndReplace.Margin = new Padding(4);
+            rbtFindAndReplace.Name = "rbtFindAndReplace";
+            rbtFindAndReplace.Size = new Size(234, 19);
+            rbtFindAndReplace.TabIndex = 30;
+            rbtFindAndReplace.TabStop = true;
+            rbtFindAndReplace.Text = "Find and replace characters in file name";
+            rbtFindAndReplace.UseVisualStyleBackColor = true;
+            rbtFindAndReplace.CheckedChanged += rbtFindAndReplace_CheckedChanged;
             // 
             // panFindAndReplace
             // 
-            this.panFindAndReplace.Controls.Add(this.chkUseRegex);
-            this.panFindAndReplace.Controls.Add(this.chkCaseSensitive);
-            this.panFindAndReplace.Controls.Add(this.lblReplace);
-            this.panFindAndReplace.Controls.Add(this.cboReplace);
-            this.panFindAndReplace.Controls.Add(this.lblFind);
-            this.panFindAndReplace.Controls.Add(this.ddlFind);
-            this.panFindAndReplace.Location = new System.Drawing.Point(4, 49);
-            this.panFindAndReplace.Margin = new System.Windows.Forms.Padding(4);
-            this.panFindAndReplace.Name = "panFindAndReplace";
-            this.panFindAndReplace.Size = new System.Drawing.Size(629, 133);
-            this.panFindAndReplace.TabIndex = 33;
+            panFindAndReplace.Controls.Add(chkUseRegex);
+            panFindAndReplace.Controls.Add(chkCaseSensitive);
+            panFindAndReplace.Controls.Add(lblReplace);
+            panFindAndReplace.Controls.Add(cboReplace);
+            panFindAndReplace.Controls.Add(lblFind);
+            panFindAndReplace.Controls.Add(ddlFind);
+            panFindAndReplace.Location = new Point(4, 44);
+            panFindAndReplace.Margin = new Padding(4);
+            panFindAndReplace.Name = "panFindAndReplace";
+            panFindAndReplace.Size = new Size(550, 125);
+            panFindAndReplace.TabIndex = 33;
             // 
             // chkUseRegex
             // 
-            this.chkUseRegex.AutoSize = true;
-            this.chkUseRegex.Location = new System.Drawing.Point(144, 108);
-            this.chkUseRegex.Margin = new System.Windows.Forms.Padding(4);
-            this.chkUseRegex.Name = "chkUseRegex";
-            this.chkUseRegex.Size = new System.Drawing.Size(97, 20);
-            this.chkUseRegex.TabIndex = 9;
-            this.chkUseRegex.Text = "Use Regex";
-            this.chkUseRegex.UseVisualStyleBackColor = true;
-            this.chkUseRegex.CheckedChanged += new System.EventHandler(this.chkUseRegex_CheckedChanged);
+            chkUseRegex.AutoSize = true;
+            chkUseRegex.Location = new Point(126, 101);
+            chkUseRegex.Margin = new Padding(4);
+            chkUseRegex.Name = "chkUseRegex";
+            chkUseRegex.Size = new Size(80, 19);
+            chkUseRegex.TabIndex = 9;
+            chkUseRegex.Text = "Use Regex";
+            chkUseRegex.UseVisualStyleBackColor = true;
+            chkUseRegex.CheckedChanged += chkUseRegex_CheckedChanged;
             // 
             // ddlFind
             // 
-            this.ddlFind.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlFind.FormattingEnabled = true;
-            this.ddlFind.Location = new System.Drawing.Point(144, 15);
-            this.ddlFind.Margin = new System.Windows.Forms.Padding(4);
-            this.ddlFind.Name = "ddlFind";
-            this.ddlFind.Size = new System.Drawing.Size(465, 24);
-            this.ddlFind.TabIndex = 0;
+            ddlFind.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            ddlFind.FormattingEnabled = true;
+            ddlFind.Location = new Point(126, 14);
+            ddlFind.Margin = new Padding(4);
+            ddlFind.Name = "ddlFind";
+            ddlFind.Size = new Size(407, 23);
+            ddlFind.TabIndex = 0;
             // 
             // rbtAppend
             // 
-            this.rbtAppend.AutoSize = true;
-            this.rbtAppend.Location = new System.Drawing.Point(4, 190);
-            this.rbtAppend.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtAppend.Name = "rbtAppend";
-            this.rbtAppend.Size = new System.Drawing.Size(244, 20);
-            this.rbtAppend.TabIndex = 31;
-            this.rbtAppend.TabStop = true;
-            this.rbtAppend.Text = "Append to beginning or end of name";
-            this.rbtAppend.UseVisualStyleBackColor = true;
-            this.rbtAppend.CheckedChanged += new System.EventHandler(this.rbtAppend_CheckedChanged);
+            rbtAppend.AutoSize = true;
+            rbtAppend.Location = new Point(4, 177);
+            rbtAppend.Margin = new Padding(4);
+            rbtAppend.Name = "rbtAppend";
+            rbtAppend.Size = new Size(222, 19);
+            rbtAppend.TabIndex = 31;
+            rbtAppend.TabStop = true;
+            rbtAppend.Text = "Append to beginning or end of name";
+            rbtAppend.UseVisualStyleBackColor = true;
+            rbtAppend.CheckedChanged += rbtAppend_CheckedChanged;
             // 
             // panAppend
             // 
-            this.panAppend.Controls.Add(this.txtSuffix);
-            this.panAppend.Controls.Add(this.txtPrefix);
-            this.panAppend.Controls.Add(this.lblPrefix);
-            this.panAppend.Controls.Add(this.lblSuffix);
-            this.panAppend.Location = new System.Drawing.Point(4, 218);
-            this.panAppend.Margin = new System.Windows.Forms.Padding(4);
-            this.panAppend.Name = "panAppend";
-            this.panAppend.Size = new System.Drawing.Size(629, 85);
-            this.panAppend.TabIndex = 32;
+            panAppend.Controls.Add(txtSuffix);
+            panAppend.Controls.Add(txtPrefix);
+            panAppend.Controls.Add(lblPrefix);
+            panAppend.Controls.Add(lblSuffix);
+            panAppend.Location = new Point(4, 204);
+            panAppend.Margin = new Padding(4);
+            panAppend.Name = "panAppend";
+            panAppend.Size = new Size(550, 80);
+            panAppend.TabIndex = 32;
             // 
             // rbtTrimCharacters
             // 
-            this.rbtTrimCharacters.AutoSize = true;
-            this.rbtTrimCharacters.Location = new System.Drawing.Point(641, 4);
-            this.rbtTrimCharacters.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtTrimCharacters.Name = "rbtTrimCharacters";
-            this.rbtTrimCharacters.Size = new System.Drawing.Size(187, 20);
-            this.rbtTrimCharacters.TabIndex = 35;
-            this.rbtTrimCharacters.TabStop = true;
-            this.rbtTrimCharacters.Text = "Trim characters from name";
-            this.rbtTrimCharacters.UseVisualStyleBackColor = true;
-            this.rbtTrimCharacters.CheckedChanged += new System.EventHandler(this.rbtTrimCharacters_CheckedChanged);
+            rbtTrimCharacters.AutoSize = true;
+            rbtTrimCharacters.Location = new Point(562, 4);
+            rbtTrimCharacters.Margin = new Padding(4);
+            rbtTrimCharacters.Name = "rbtTrimCharacters";
+            rbtTrimCharacters.Size = new Size(167, 19);
+            rbtTrimCharacters.TabIndex = 35;
+            rbtTrimCharacters.TabStop = true;
+            rbtTrimCharacters.Text = "Trim characters from name";
+            rbtTrimCharacters.UseVisualStyleBackColor = true;
+            rbtTrimCharacters.CheckedChanged += rbtTrimCharacters_CheckedChanged;
             // 
             // panTrimCharacters
             // 
-            this.panTrimCharacters.Controls.Add(this.nudRemoveTrailingCharacters);
-            this.panTrimCharacters.Controls.Add(this.nudRemoveLeadingCharacters);
-            this.panTrimCharacters.Controls.Add(this.rbtRemoveUrlEncoding);
-            this.panTrimCharacters.Controls.Add(this.rbtTruncateWhiteSpace);
-            this.panTrimCharacters.Controls.Add(this.rbtRemoveTrailingCharacter);
-            this.panTrimCharacters.Controls.Add(this.rbtRemoveLeadingCharacter);
-            this.panTrimCharacters.Location = new System.Drawing.Point(641, 32);
-            this.panTrimCharacters.Margin = new System.Windows.Forms.Padding(4);
-            this.panTrimCharacters.Name = "panTrimCharacters";
-            this.panTrimCharacters.Size = new System.Drawing.Size(629, 132);
-            this.panTrimCharacters.TabIndex = 34;
+            panTrimCharacters.Controls.Add(nudRemoveTrailingCharacters);
+            panTrimCharacters.Controls.Add(nudRemoveLeadingCharacters);
+            panTrimCharacters.Controls.Add(rbtRemoveUrlEncoding);
+            panTrimCharacters.Controls.Add(rbtTruncateWhiteSpace);
+            panTrimCharacters.Controls.Add(rbtRemoveTrailingCharacter);
+            panTrimCharacters.Controls.Add(rbtRemoveLeadingCharacter);
+            panTrimCharacters.Location = new Point(562, 31);
+            panTrimCharacters.Margin = new Padding(4);
+            panTrimCharacters.Name = "panTrimCharacters";
+            panTrimCharacters.Size = new Size(550, 124);
+            panTrimCharacters.TabIndex = 34;
             // 
             // nudRemoveTrailingCharacters
             // 
-            this.nudRemoveTrailingCharacters.Location = new System.Drawing.Point(365, 73);
-            this.nudRemoveTrailingCharacters.Margin = new System.Windows.Forms.Padding(4);
-            this.nudRemoveTrailingCharacters.Name = "nudRemoveTrailingCharacters";
-            this.nudRemoveTrailingCharacters.Size = new System.Drawing.Size(96, 22);
-            this.nudRemoveTrailingCharacters.TabIndex = 41;
-            this.nudRemoveTrailingCharacters.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            nudRemoveTrailingCharacters.Location = new Point(319, 68);
+            nudRemoveTrailingCharacters.Margin = new Padding(4);
+            nudRemoveTrailingCharacters.Name = "nudRemoveTrailingCharacters";
+            nudRemoveTrailingCharacters.Size = new Size(84, 23);
+            nudRemoveTrailingCharacters.TabIndex = 41;
+            nudRemoveTrailingCharacters.TextAlign = HorizontalAlignment.Right;
             // 
             // nudRemoveLeadingCharacters
             // 
-            this.nudRemoveLeadingCharacters.Location = new System.Drawing.Point(365, 44);
-            this.nudRemoveLeadingCharacters.Margin = new System.Windows.Forms.Padding(4);
-            this.nudRemoveLeadingCharacters.Name = "nudRemoveLeadingCharacters";
-            this.nudRemoveLeadingCharacters.Size = new System.Drawing.Size(96, 22);
-            this.nudRemoveLeadingCharacters.TabIndex = 40;
-            this.nudRemoveLeadingCharacters.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            nudRemoveLeadingCharacters.Location = new Point(319, 41);
+            nudRemoveLeadingCharacters.Margin = new Padding(4);
+            nudRemoveLeadingCharacters.Name = "nudRemoveLeadingCharacters";
+            nudRemoveLeadingCharacters.Size = new Size(84, 23);
+            nudRemoveLeadingCharacters.TabIndex = 40;
+            nudRemoveLeadingCharacters.TextAlign = HorizontalAlignment.Right;
             // 
             // rbtRemoveUrlEncoding
             // 
-            this.rbtRemoveUrlEncoding.AutoSize = true;
-            this.rbtRemoveUrlEncoding.Location = new System.Drawing.Point(144, 101);
-            this.rbtRemoveUrlEncoding.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtRemoveUrlEncoding.Name = "rbtRemoveUrlEncoding";
-            this.rbtRemoveUrlEncoding.Size = new System.Drawing.Size(170, 20);
-            this.rbtRemoveUrlEncoding.TabIndex = 39;
-            this.rbtRemoveUrlEncoding.Text = "Remove URL Encoding";
-            this.rbtRemoveUrlEncoding.UseVisualStyleBackColor = true;
+            rbtRemoveUrlEncoding.AutoSize = true;
+            rbtRemoveUrlEncoding.Location = new Point(126, 95);
+            rbtRemoveUrlEncoding.Margin = new Padding(4);
+            rbtRemoveUrlEncoding.Name = "rbtRemoveUrlEncoding";
+            rbtRemoveUrlEncoding.Size = new Size(145, 19);
+            rbtRemoveUrlEncoding.TabIndex = 39;
+            rbtRemoveUrlEncoding.Text = "Remove URL Encoding";
+            rbtRemoveUrlEncoding.UseVisualStyleBackColor = true;
             // 
             // rbtTruncateWhiteSpace
             // 
-            this.rbtTruncateWhiteSpace.AutoSize = true;
-            this.rbtTruncateWhiteSpace.Checked = true;
-            this.rbtTruncateWhiteSpace.Location = new System.Drawing.Point(144, 16);
-            this.rbtTruncateWhiteSpace.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtTruncateWhiteSpace.Name = "rbtTruncateWhiteSpace";
-            this.rbtTruncateWhiteSpace.Size = new System.Drawing.Size(161, 20);
-            this.rbtTruncateWhiteSpace.TabIndex = 38;
-            this.rbtTruncateWhiteSpace.TabStop = true;
-            this.rbtTruncateWhiteSpace.Text = "Truncate White Space";
-            this.rbtTruncateWhiteSpace.UseVisualStyleBackColor = true;
+            rbtTruncateWhiteSpace.AutoSize = true;
+            rbtTruncateWhiteSpace.Checked = true;
+            rbtTruncateWhiteSpace.Location = new Point(126, 15);
+            rbtTruncateWhiteSpace.Margin = new Padding(4);
+            rbtTruncateWhiteSpace.Name = "rbtTruncateWhiteSpace";
+            rbtTruncateWhiteSpace.Size = new Size(138, 19);
+            rbtTruncateWhiteSpace.TabIndex = 38;
+            rbtTruncateWhiteSpace.TabStop = true;
+            rbtTruncateWhiteSpace.Text = "Truncate White Space";
+            rbtTruncateWhiteSpace.UseVisualStyleBackColor = true;
             // 
             // rbtRemoveTrailingCharacter
             // 
-            this.rbtRemoveTrailingCharacter.AutoSize = true;
-            this.rbtRemoveTrailingCharacter.Location = new System.Drawing.Point(144, 73);
-            this.rbtRemoveTrailingCharacter.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtRemoveTrailingCharacter.Name = "rbtRemoveTrailingCharacter";
-            this.rbtRemoveTrailingCharacter.Size = new System.Drawing.Size(189, 20);
-            this.rbtRemoveTrailingCharacter.TabIndex = 37;
-            this.rbtRemoveTrailingCharacter.Text = "Remove Trailing Character";
-            this.rbtRemoveTrailingCharacter.UseVisualStyleBackColor = true;
+            rbtRemoveTrailingCharacter.AutoSize = true;
+            rbtRemoveTrailingCharacter.Location = new Point(126, 68);
+            rbtRemoveTrailingCharacter.Margin = new Padding(4);
+            rbtRemoveTrailingCharacter.Name = "rbtRemoveTrailingCharacter";
+            rbtRemoveTrailingCharacter.Size = new Size(163, 19);
+            rbtRemoveTrailingCharacter.TabIndex = 37;
+            rbtRemoveTrailingCharacter.Text = "Remove Trailing Character";
+            rbtRemoveTrailingCharacter.UseVisualStyleBackColor = true;
             // 
             // rbtRemoveLeadingCharacter
             // 
-            this.rbtRemoveLeadingCharacter.AutoSize = true;
-            this.rbtRemoveLeadingCharacter.Location = new System.Drawing.Point(144, 44);
-            this.rbtRemoveLeadingCharacter.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtRemoveLeadingCharacter.Name = "rbtRemoveLeadingCharacter";
-            this.rbtRemoveLeadingCharacter.Size = new System.Drawing.Size(200, 20);
-            this.rbtRemoveLeadingCharacter.TabIndex = 36;
-            this.rbtRemoveLeadingCharacter.Text = "Remove Leading Characters";
-            this.rbtRemoveLeadingCharacter.UseVisualStyleBackColor = true;
+            rbtRemoveLeadingCharacter.AutoSize = true;
+            rbtRemoveLeadingCharacter.Location = new Point(126, 41);
+            rbtRemoveLeadingCharacter.Margin = new Padding(4);
+            rbtRemoveLeadingCharacter.Name = "rbtRemoveLeadingCharacter";
+            rbtRemoveLeadingCharacter.Size = new Size(172, 19);
+            rbtRemoveLeadingCharacter.TabIndex = 36;
+            rbtRemoveLeadingCharacter.Text = "Remove Leading Characters";
+            rbtRemoveLeadingCharacter.UseVisualStyleBackColor = true;
             // 
             // rbtRestrictLength
             // 
-            this.rbtRestrictLength.AutoSize = true;
-            this.rbtRestrictLength.Location = new System.Drawing.Point(641, 172);
-            this.rbtRestrictLength.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtRestrictLength.Name = "rbtRestrictLength";
-            this.rbtRestrictLength.Size = new System.Drawing.Size(169, 20);
-            this.rbtRestrictLength.TabIndex = 36;
-            this.rbtRestrictLength.TabStop = true;
-            this.rbtRestrictLength.Text = "Restrict file name length";
-            this.rbtRestrictLength.UseVisualStyleBackColor = true;
-            this.rbtRestrictLength.CheckedChanged += new System.EventHandler(this.rbtRestrictLength_CheckedChanged);
+            rbtRestrictLength.AutoSize = true;
+            rbtRestrictLength.Location = new Point(562, 163);
+            rbtRestrictLength.Margin = new Padding(4);
+            rbtRestrictLength.Name = "rbtRestrictLength";
+            rbtRestrictLength.Size = new Size(153, 19);
+            rbtRestrictLength.TabIndex = 36;
+            rbtRestrictLength.TabStop = true;
+            rbtRestrictLength.Text = "Restrict file name length";
+            rbtRestrictLength.UseVisualStyleBackColor = true;
+            rbtRestrictLength.CheckedChanged += rbtRestrictLength_CheckedChanged;
             // 
             // panRestrictLength
             // 
-            this.panRestrictLength.Controls.Add(this.nudMaxNameLength);
-            this.panRestrictLength.Controls.Add(this.label1);
-            this.panRestrictLength.Location = new System.Drawing.Point(641, 200);
-            this.panRestrictLength.Margin = new System.Windows.Forms.Padding(4);
-            this.panRestrictLength.Name = "panRestrictLength";
-            this.panRestrictLength.Size = new System.Drawing.Size(629, 48);
-            this.panRestrictLength.TabIndex = 37;
+            panRestrictLength.Controls.Add(nudMaxNameLength);
+            panRestrictLength.Controls.Add(label1);
+            panRestrictLength.Location = new Point(562, 190);
+            panRestrictLength.Margin = new Padding(4);
+            panRestrictLength.Name = "panRestrictLength";
+            panRestrictLength.Size = new Size(550, 45);
+            panRestrictLength.TabIndex = 37;
             // 
             // nudMaxNameLength
             // 
-            this.nudMaxNameLength.Location = new System.Drawing.Point(147, 11);
-            this.nudMaxNameLength.Margin = new System.Windows.Forms.Padding(4);
-            this.nudMaxNameLength.Name = "nudMaxNameLength";
-            this.nudMaxNameLength.Size = new System.Drawing.Size(96, 22);
-            this.nudMaxNameLength.TabIndex = 1;
-            this.nudMaxNameLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            nudMaxNameLength.Location = new Point(129, 10);
+            nudMaxNameLength.Margin = new Padding(4);
+            nudMaxNameLength.Name = "nudMaxNameLength";
+            nudMaxNameLength.Size = new Size(84, 23);
+            nudMaxNameLength.TabIndex = 1;
+            nudMaxNameLength.TextAlign = HorizontalAlignment.Right;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 14);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Maximum Length";
+            label1.AutoSize = true;
+            label1.Location = new Point(18, 13);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(102, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Maximum Length";
             // 
             // rbtChangeCase
             // 
-            this.rbtChangeCase.AutoSize = true;
-            this.rbtChangeCase.Location = new System.Drawing.Point(641, 256);
-            this.rbtChangeCase.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtChangeCase.Name = "rbtChangeCase";
-            this.rbtChangeCase.Size = new System.Drawing.Size(165, 20);
-            this.rbtChangeCase.TabIndex = 38;
-            this.rbtChangeCase.TabStop = true;
-            this.rbtChangeCase.Text = "Change file name case";
-            this.rbtChangeCase.UseVisualStyleBackColor = true;
-            this.rbtChangeCase.CheckedChanged += new System.EventHandler(this.rbtChangeCase_CheckedChanged);
+            rbtChangeCase.AutoSize = true;
+            rbtChangeCase.Location = new Point(562, 243);
+            rbtChangeCase.Margin = new Padding(4);
+            rbtChangeCase.Name = "rbtChangeCase";
+            rbtChangeCase.Size = new Size(144, 19);
+            rbtChangeCase.TabIndex = 38;
+            rbtChangeCase.TabStop = true;
+            rbtChangeCase.Text = "Change file name case";
+            rbtChangeCase.UseVisualStyleBackColor = true;
+            rbtChangeCase.CheckedChanged += rbtChangeCase_CheckedChanged;
             // 
             // panChangeCase
             // 
-            this.panChangeCase.Controls.Add(this.cboCase);
-            this.panChangeCase.Controls.Add(this.lblCase);
-            this.panChangeCase.Location = new System.Drawing.Point(1278, 4);
-            this.panChangeCase.Margin = new System.Windows.Forms.Padding(4);
-            this.panChangeCase.Name = "panChangeCase";
-            this.panChangeCase.Size = new System.Drawing.Size(629, 52);
-            this.panChangeCase.TabIndex = 39;
+            panChangeCase.Controls.Add(cboCase);
+            panChangeCase.Controls.Add(lblCase);
+            panChangeCase.Location = new Point(1120, 4);
+            panChangeCase.Margin = new Padding(4);
+            panChangeCase.Name = "panChangeCase";
+            panChangeCase.Size = new Size(550, 49);
+            panChangeCase.TabIndex = 39;
             // 
             // rbtRunScript
             // 
-            this.rbtRunScript.AutoSize = true;
-            this.rbtRunScript.Location = new System.Drawing.Point(1278, 64);
-            this.rbtRunScript.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtRunScript.Name = "rbtRunScript";
-            this.rbtRunScript.Size = new System.Drawing.Size(147, 20);
-            this.rbtRunScript.TabIndex = 40;
-            this.rbtRunScript.TabStop = true;
-            this.rbtRunScript.Text = "Run a rename script";
-            this.rbtRunScript.UseVisualStyleBackColor = true;
-            this.rbtRunScript.CheckedChanged += new System.EventHandler(this.rbtRunScript_CheckedChanged);
+            rbtRunScript.AutoSize = true;
+            rbtRunScript.Location = new Point(1120, 61);
+            rbtRunScript.Margin = new Padding(4);
+            rbtRunScript.Name = "rbtRunScript";
+            rbtRunScript.Size = new Size(130, 19);
+            rbtRunScript.TabIndex = 40;
+            rbtRunScript.TabStop = true;
+            rbtRunScript.Text = "Run a rename script";
+            rbtRunScript.UseVisualStyleBackColor = true;
+            rbtRunScript.CheckedChanged += rbtRunScript_CheckedChanged;
             // 
             // panRunScript
             // 
-            this.panRunScript.Controls.Add(this.btnSelectScript);
-            this.panRunScript.Controls.Add(this.cboScriptList);
-            this.panRunScript.Location = new System.Drawing.Point(1278, 92);
-            this.panRunScript.Margin = new System.Windows.Forms.Padding(4);
-            this.panRunScript.Name = "panRunScript";
-            this.panRunScript.Size = new System.Drawing.Size(629, 66);
-            this.panRunScript.TabIndex = 41;
+            panRunScript.Controls.Add(btnSelectScript);
+            panRunScript.Controls.Add(cboScriptList);
+            panRunScript.Location = new Point(1120, 88);
+            panRunScript.Margin = new Padding(4);
+            panRunScript.Name = "panRunScript";
+            panRunScript.Size = new Size(550, 62);
+            panRunScript.TabIndex = 41;
             // 
             // btnSelectScript
             // 
-            this.btnSelectScript.Location = new System.Drawing.Point(28, 15);
-            this.btnSelectScript.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSelectScript.Name = "btnSelectScript";
-            this.btnSelectScript.Size = new System.Drawing.Size(108, 28);
-            this.btnSelectScript.TabIndex = 21;
-            this.btnSelectScript.Text = "Select Script";
-            this.btnSelectScript.UseVisualStyleBackColor = true;
-            this.btnSelectScript.Click += new System.EventHandler(this.btnRunScript_Click);
+            btnSelectScript.Location = new Point(24, 14);
+            btnSelectScript.Margin = new Padding(4);
+            btnSelectScript.Name = "btnSelectScript";
+            btnSelectScript.Size = new Size(94, 26);
+            btnSelectScript.TabIndex = 21;
+            btnSelectScript.Text = "Select Script";
+            btnSelectScript.UseVisualStyleBackColor = true;
+            btnSelectScript.Click += btnRunScript_Click;
             // 
             // cboScriptList
             // 
-            this.cboScriptList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboScriptList.FormattingEnabled = true;
-            this.cboScriptList.Location = new System.Drawing.Point(144, 17);
-            this.cboScriptList.Margin = new System.Windows.Forms.Padding(4);
-            this.cboScriptList.Name = "cboScriptList";
-            this.cboScriptList.Size = new System.Drawing.Size(464, 24);
-            this.cboScriptList.TabIndex = 22;
+            cboScriptList.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cboScriptList.FormattingEnabled = true;
+            cboScriptList.Location = new Point(126, 16);
+            cboScriptList.Margin = new Padding(4);
+            cboScriptList.Name = "cboScriptList";
+            cboScriptList.Size = new Size(406, 23);
+            cboScriptList.TabIndex = 22;
             // 
             // chkRecursive
             // 
-            this.chkRecursive.AutoSize = true;
-            this.chkRecursive.Location = new System.Drawing.Point(4, 60);
-            this.chkRecursive.Margin = new System.Windows.Forms.Padding(4);
-            this.chkRecursive.Name = "chkRecursive";
-            this.chkRecursive.Size = new System.Drawing.Size(169, 20);
-            this.chkRecursive.TabIndex = 10;
-            this.chkRecursive.Text = "Process Subdirectories";
-            this.chkRecursive.UseVisualStyleBackColor = true;
+            chkRecursive.AutoSize = true;
+            chkRecursive.Location = new Point(4, 58);
+            chkRecursive.Margin = new Padding(4);
+            chkRecursive.Name = "chkRecursive";
+            chkRecursive.Size = new Size(144, 19);
+            chkRecursive.TabIndex = 10;
+            chkRecursive.Text = "Process Subdirectories";
+            chkRecursive.UseVisualStyleBackColor = true;
             // 
             // chkLogChanges
             // 
-            this.chkLogChanges.AutoSize = true;
-            this.chkLogChanges.Location = new System.Drawing.Point(383, 4);
-            this.chkLogChanges.Margin = new System.Windows.Forms.Padding(4);
-            this.chkLogChanges.Name = "chkLogChanges";
-            this.chkLogChanges.Size = new System.Drawing.Size(161, 20);
-            this.chkLogChanges.TabIndex = 12;
-            this.chkLogChanges.Text = "Generate Change Log";
-            this.chkLogChanges.UseVisualStyleBackColor = true;
+            chkLogChanges.AutoSize = true;
+            chkLogChanges.Location = new Point(331, 4);
+            chkLogChanges.Margin = new Padding(4);
+            chkLogChanges.Name = "chkLogChanges";
+            chkLogChanges.Size = new Size(140, 19);
+            chkLogChanges.TabIndex = 12;
+            chkLogChanges.Text = "Generate Change Log";
+            chkLogChanges.UseVisualStyleBackColor = true;
             // 
             // chkLowerExtensions
             // 
-            this.chkLowerExtensions.AutoSize = true;
-            this.chkLowerExtensions.Location = new System.Drawing.Point(181, 4);
-            this.chkLowerExtensions.Margin = new System.Windows.Forms.Padding(4);
-            this.chkLowerExtensions.Name = "chkLowerExtensions";
-            this.chkLowerExtensions.Size = new System.Drawing.Size(194, 20);
-            this.chkLowerExtensions.TabIndex = 15;
-            this.chkLowerExtensions.Text = "Standardize File Extensions";
-            this.chkLowerExtensions.UseVisualStyleBackColor = true;
-            this.chkLowerExtensions.CheckedChanged += new System.EventHandler(this.chkLowerExtensions_CheckedChanged);
+            chkLowerExtensions.AutoSize = true;
+            chkLowerExtensions.Location = new Point(156, 4);
+            chkLowerExtensions.Margin = new Padding(4);
+            chkLowerExtensions.Name = "chkLowerExtensions";
+            chkLowerExtensions.Size = new Size(167, 19);
+            chkLowerExtensions.TabIndex = 15;
+            chkLowerExtensions.Text = "Standardize File Extensions";
+            chkLowerExtensions.UseVisualStyleBackColor = true;
+            chkLowerExtensions.CheckedChanged += chkLowerExtensions_CheckedChanged;
             // 
             // btnAbout
             // 
-            this.btnAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAbout.Location = new System.Drawing.Point(479, 520);
-            this.btnAbout.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(100, 28);
-            this.btnAbout.TabIndex = 24;
-            this.btnAbout.Text = "About";
-            this.btnAbout.UseVisualStyleBackColor = true;
-            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            btnAbout.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAbout.Location = new Point(419, 488);
+            btnAbout.Margin = new Padding(4);
+            btnAbout.Name = "btnAbout";
+            btnAbout.Size = new Size(88, 26);
+            btnAbout.TabIndex = 24;
+            btnAbout.Text = "About";
+            btnAbout.UseVisualStyleBackColor = true;
+            btnAbout.Click += btnAbout_Click;
             // 
             // chkCreatePlaylist
             // 
-            this.chkCreatePlaylist.AutoSize = true;
-            this.chkCreatePlaylist.Location = new System.Drawing.Point(383, 32);
-            this.chkCreatePlaylist.Margin = new System.Windows.Forms.Padding(4);
-            this.chkCreatePlaylist.Name = "chkCreatePlaylist";
-            this.chkCreatePlaylist.Size = new System.Drawing.Size(115, 20);
-            this.chkCreatePlaylist.TabIndex = 28;
-            this.chkCreatePlaylist.Tag = "";
-            this.chkCreatePlaylist.Text = "Create Playlist";
-            this.chkCreatePlaylist.UseVisualStyleBackColor = true;
+            chkCreatePlaylist.AutoSize = true;
+            chkCreatePlaylist.Location = new Point(331, 31);
+            chkCreatePlaylist.Margin = new Padding(4);
+            chkCreatePlaylist.Name = "chkCreatePlaylist";
+            chkCreatePlaylist.Size = new Size(100, 19);
+            chkCreatePlaylist.TabIndex = 28;
+            chkCreatePlaylist.Tag = "";
+            chkCreatePlaylist.Text = "Create Playlist";
+            chkCreatePlaylist.UseVisualStyleBackColor = true;
             // 
             // chkStandardizeFileProperties
             // 
-            this.chkStandardizeFileProperties.AutoSize = true;
-            this.chkStandardizeFileProperties.Location = new System.Drawing.Point(181, 60);
-            this.chkStandardizeFileProperties.Margin = new System.Windows.Forms.Padding(4);
-            this.chkStandardizeFileProperties.Name = "chkStandardizeFileProperties";
-            this.chkStandardizeFileProperties.Size = new System.Drawing.Size(191, 20);
-            this.chkStandardizeFileProperties.TabIndex = 29;
-            this.chkStandardizeFileProperties.Tag = "";
-            this.chkStandardizeFileProperties.Text = "Standardize File Properties";
-            this.chkStandardizeFileProperties.UseVisualStyleBackColor = true;
+            chkStandardizeFileProperties.AutoSize = true;
+            chkStandardizeFileProperties.Location = new Point(156, 58);
+            chkStandardizeFileProperties.Margin = new Padding(4);
+            chkStandardizeFileProperties.Name = "chkStandardizeFileProperties";
+            chkStandardizeFileProperties.Size = new Size(164, 19);
+            chkStandardizeFileProperties.TabIndex = 29;
+            chkStandardizeFileProperties.Tag = "";
+            chkStandardizeFileProperties.Text = "Standardize File Properties";
+            chkStandardizeFileProperties.UseVisualStyleBackColor = true;
             // 
             // chkProcessFiles
             // 
-            this.chkProcessFiles.AutoSize = true;
-            this.chkProcessFiles.Location = new System.Drawing.Point(4, 32);
-            this.chkProcessFiles.Margin = new System.Windows.Forms.Padding(4);
-            this.chkProcessFiles.Name = "chkProcessFiles";
-            this.chkProcessFiles.Size = new System.Drawing.Size(111, 20);
-            this.chkProcessFiles.TabIndex = 30;
-            this.chkProcessFiles.Tag = "";
-            this.chkProcessFiles.Text = "Process Files";
-            this.chkProcessFiles.UseVisualStyleBackColor = true;
+            chkProcessFiles.AutoSize = true;
+            chkProcessFiles.Location = new Point(4, 31);
+            chkProcessFiles.Margin = new Padding(4);
+            chkProcessFiles.Name = "chkProcessFiles";
+            chkProcessFiles.Size = new Size(92, 19);
+            chkProcessFiles.TabIndex = 30;
+            chkProcessFiles.Tag = "";
+            chkProcessFiles.Text = "Process Files";
+            chkProcessFiles.UseVisualStyleBackColor = true;
             // 
             // chkProcessDirectories
             // 
-            this.chkProcessDirectories.AutoSize = true;
-            this.chkProcessDirectories.Location = new System.Drawing.Point(4, 4);
-            this.chkProcessDirectories.Margin = new System.Windows.Forms.Padding(4);
-            this.chkProcessDirectories.Name = "chkProcessDirectories";
-            this.chkProcessDirectories.Size = new System.Drawing.Size(147, 20);
-            this.chkProcessDirectories.TabIndex = 31;
-            this.chkProcessDirectories.Tag = "";
-            this.chkProcessDirectories.Text = "Process Directories";
-            this.chkProcessDirectories.UseVisualStyleBackColor = true;
+            chkProcessDirectories.AutoSize = true;
+            chkProcessDirectories.Location = new Point(4, 4);
+            chkProcessDirectories.Margin = new Padding(4);
+            chkProcessDirectories.Name = "chkProcessDirectories";
+            chkProcessDirectories.Size = new Size(125, 19);
+            chkProcessDirectories.TabIndex = 31;
+            chkProcessDirectories.Tag = "";
+            chkProcessDirectories.Text = "Process Directories";
+            chkProcessDirectories.UseVisualStyleBackColor = true;
             // 
             // flpCheckBoxGrid
             // 
-            this.flpCheckBoxGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flpCheckBoxGrid.Controls.Add(this.chkProcessDirectories);
-            this.flpCheckBoxGrid.Controls.Add(this.chkProcessFiles);
-            this.flpCheckBoxGrid.Controls.Add(this.chkRecursive);
-            this.flpCheckBoxGrid.Controls.Add(this.chkLowerExtensions);
-            this.flpCheckBoxGrid.Controls.Add(this.chkPreserveExtensions);
-            this.flpCheckBoxGrid.Controls.Add(this.chkStandardizeFileProperties);
-            this.flpCheckBoxGrid.Controls.Add(this.chkLogChanges);
-            this.flpCheckBoxGrid.Controls.Add(this.chkCreatePlaylist);
-            this.flpCheckBoxGrid.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpCheckBoxGrid.Location = new System.Drawing.Point(16, 81);
-            this.flpCheckBoxGrid.Margin = new System.Windows.Forms.Padding(4);
-            this.flpCheckBoxGrid.Name = "flpCheckBoxGrid";
-            this.flpCheckBoxGrid.Size = new System.Drawing.Size(671, 92);
-            this.flpCheckBoxGrid.TabIndex = 30;
+            flpCheckBoxGrid.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            flpCheckBoxGrid.Controls.Add(chkProcessDirectories);
+            flpCheckBoxGrid.Controls.Add(chkProcessFiles);
+            flpCheckBoxGrid.Controls.Add(chkRecursive);
+            flpCheckBoxGrid.Controls.Add(chkLowerExtensions);
+            flpCheckBoxGrid.Controls.Add(chkPreserveExtensions);
+            flpCheckBoxGrid.Controls.Add(chkStandardizeFileProperties);
+            flpCheckBoxGrid.Controls.Add(chkLogChanges);
+            flpCheckBoxGrid.Controls.Add(chkCreatePlaylist);
+            flpCheckBoxGrid.FlowDirection = FlowDirection.TopDown;
+            flpCheckBoxGrid.Location = new Point(14, 76);
+            flpCheckBoxGrid.Margin = new Padding(4);
+            flpCheckBoxGrid.Name = "flpCheckBoxGrid";
+            flpCheckBoxGrid.Size = new Size(587, 86);
+            flpCheckBoxGrid.TabIndex = 30;
             // 
             // chkPreserveExtensions
             // 
-            this.chkPreserveExtensions.AutoSize = true;
-            this.chkPreserveExtensions.Location = new System.Drawing.Point(181, 32);
-            this.chkPreserveExtensions.Margin = new System.Windows.Forms.Padding(4);
-            this.chkPreserveExtensions.Name = "chkPreserveExtensions";
-            this.chkPreserveExtensions.Size = new System.Drawing.Size(170, 20);
-            this.chkPreserveExtensions.TabIndex = 31;
-            this.chkPreserveExtensions.Tag = "";
-            this.chkPreserveExtensions.Text = "Preserve File Extension";
-            this.chkPreserveExtensions.UseVisualStyleBackColor = true;
-            this.chkPreserveExtensions.CheckedChanged += new System.EventHandler(this.chkPreserveExtensions_CheckedChanged);
+            chkPreserveExtensions.AutoSize = true;
+            chkPreserveExtensions.Location = new Point(156, 31);
+            chkPreserveExtensions.Margin = new Padding(4);
+            chkPreserveExtensions.Name = "chkPreserveExtensions";
+            chkPreserveExtensions.Size = new Size(145, 19);
+            chkPreserveExtensions.TabIndex = 31;
+            chkPreserveExtensions.Tag = "";
+            chkPreserveExtensions.Text = "Preserve File Extension";
+            chkPreserveExtensions.UseVisualStyleBackColor = true;
+            chkPreserveExtensions.CheckedChanged += chkPreserveExtensions_CheckedChanged;
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(703, 560);
-            this.Controls.Add(this.cboFileTypes);
-            this.Controls.Add(this.flpCheckBoxGrid);
-            this.Controls.Add(this.lblFileTypeFilter);
-            this.Controls.Add(this.flpOptions);
-            this.Controls.Add(this.lblFilesRenamed);
-            this.Controls.Add(this.btnReset);
-            this.Controls.Add(this.cboSelectedDirectory);
-            this.Controls.Add(this.btnProcessFiles);
-            this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnSelectDirectory);
-            this.Controls.Add(this.btnAbout);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(721, 605);
-            this.Name = "FrmMain";
-            this.Text = "Assembly Name Here";
-            this.flpOptions.ResumeLayout(false);
-            this.flpOptions.PerformLayout();
-            this.panFindAndReplace.ResumeLayout(false);
-            this.panFindAndReplace.PerformLayout();
-            this.panAppend.ResumeLayout(false);
-            this.panAppend.PerformLayout();
-            this.panTrimCharacters.ResumeLayout(false);
-            this.panTrimCharacters.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudRemoveTrailingCharacters)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudRemoveLeadingCharacters)).EndInit();
-            this.panRestrictLength.ResumeLayout(false);
-            this.panRestrictLength.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxNameLength)).EndInit();
-            this.panChangeCase.ResumeLayout(false);
-            this.panChangeCase.PerformLayout();
-            this.panRunScript.ResumeLayout(false);
-            this.flpCheckBoxGrid.ResumeLayout(false);
-            this.flpCheckBoxGrid.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(617, 531);
+            Controls.Add(cboFileTypes);
+            Controls.Add(flpCheckBoxGrid);
+            Controls.Add(lblFileTypeFilter);
+            Controls.Add(flpOptions);
+            Controls.Add(lblFilesRenamed);
+            Controls.Add(btnReset);
+            Controls.Add(cboSelectedDirectory);
+            Controls.Add(btnProcessFiles);
+            Controls.Add(btnExit);
+            Controls.Add(btnSelectDirectory);
+            Controls.Add(btnAbout);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4);
+            MinimumSize = new Size(633, 570);
+            Name = "FrmMain";
+            Text = "Assembly Name Here";
+            flpOptions.ResumeLayout(false);
+            flpOptions.PerformLayout();
+            panFindAndReplace.ResumeLayout(false);
+            panFindAndReplace.PerformLayout();
+            panAppend.ResumeLayout(false);
+            panAppend.PerformLayout();
+            panTrimCharacters.ResumeLayout(false);
+            panTrimCharacters.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudRemoveTrailingCharacters).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudRemoveLeadingCharacters).EndInit();
+            panRestrictLength.ResumeLayout(false);
+            panRestrictLength.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudMaxNameLength).EndInit();
+            panChangeCase.ResumeLayout(false);
+            panChangeCase.PerformLayout();
+            panRunScript.ResumeLayout(false);
+            flpCheckBoxGrid.ResumeLayout(false);
+            flpCheckBoxGrid.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

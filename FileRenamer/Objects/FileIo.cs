@@ -52,7 +52,7 @@ namespace AutoCodeGenLibrary
                 using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write))
                 {
                     var bytes = Encoding.UTF8.GetBytes(outputData);
-                    await stream.WriteAsync(bytes, 0, bytes.Length);
+                    await stream.WriteAsync(bytes);
                 }
             });
         }
@@ -86,7 +86,7 @@ namespace AutoCodeGenLibrary
                     foreach (var line in outputData)
                     {
                         var bytes = Encoding.UTF8.GetBytes(line + Environment.NewLine);
-                        await stream.WriteAsync(bytes, 0, bytes.Length);
+                        await stream.WriteAsync(bytes);
                     }
                 }
             });
@@ -114,7 +114,7 @@ namespace AutoCodeGenLibrary
                     File.SetAttributes(filePath, FileAttributes.Normal);
 
                 using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write))
-                    await stream.WriteAsync(bytes, 0, bytes.Length);
+                    await stream.WriteAsync(bytes);
             });
         }
 

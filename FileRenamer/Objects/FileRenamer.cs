@@ -469,9 +469,6 @@ namespace FileRenamer
         {
             // pareses an input string that looks like: DoSomething('foo','bar')
 
-            instruction = string.Empty;
-            arguments = new string[0];
-
             int start = input.IndexOf('(');
 
             if (start == -1)

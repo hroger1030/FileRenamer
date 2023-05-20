@@ -17,31 +17,28 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 using AutoCodeGenLibrary;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Media;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Windows.Forms;
 
 namespace FileRenamer
 {
     public partial class FrmMain : Form
     {
         [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
-        public static extern int GetLongPathName
+        private static extern int GetLongPathName
         (
-            [MarshalAs(UnmanagedType.LPTStr)]
+            [MarshalAs(UnmanagedType.LPWStr)]
             string path,
-            [MarshalAs(UnmanagedType.LPTStr)]
+            [MarshalAs(UnmanagedType.LPWStr)]
             StringBuilder longPath,
             int longPathLength
         );
 
-        protected static string OUTPUT_FILE_NAME = "RenameLog ({0}).txt";
-        protected static string OBJECTS_RENAMED_LABEL = "Objects changed: {0}, Errors: {1}";
-        protected static string RENAME_STARTING_LABEL = "Processing...";
+        private const float APP_VERSION = 2.0F;
+        private const string OUTPUT_FILE_NAME = "RenameLog ({0}).txt";
+        private const string OBJECTS_RENAMED_LABEL = "Objects changed: {0}, Errors: {1}";
+        private const string RENAME_STARTING_LABEL = "Processing...";
 
         // Notes 
         // http://www.ivankristianto.com/os/windows/howto-add-item-to-context-menu-on-windows/1206/
@@ -104,7 +101,10 @@ namespace FileRenamer
             {
                 // arguments gives us a strange dos formatted path name, fix with win32 api call
                 var fixed_path = new StringBuilder(1024);
-                GetLongPathName(args[0], fixed_path, fixed_path.Capacity);
+                var result = GetLongPathName(args[0], fixed_path, fixed_path.Capacity);
+
+                if (result == 0)
+                    throw new Exception("Unable to convert path to long path name.");
 
                 string buffer = fixed_path.ToString();
 
@@ -121,7 +121,7 @@ namespace FileRenamer
                 cboReplace.Text = file_name;
             }
 
-            Text = Application.ProductName + " V" + Application.ProductVersion + " By Roger Hill";
+            Text = $"{Application.ProductName} V{APP_VERSION} By Roger Hill";
             ddlFind.Focus();
         }
 
@@ -131,22 +131,22 @@ namespace FileRenamer
 
             foreach (var control in flpOptions.Controls)
             {
-                if (control is Panel)
-                    ((Panel)control).Visible = false;
-                else if (control is RadioButton)
-                    ((RadioButton)control).Checked = false;
+                if (control is Panel panel)
+                    panel.Visible = false;
+                else if (control is RadioButton button)
+                    button.Checked = false;
             }
 
             foreach (var control in flpOptions.Controls)
             {
-                if (control is CheckBox)
-                    ((CheckBox)control).Checked = false;
+                if (control is CheckBox box)
+                    box.Checked = false;
             }
 
             foreach (var control in panTrimCharacters.Controls)
             {
-                if (control is RadioButton)
-                    ((RadioButton)control).Checked = false;
+                if (control is RadioButton button)
+                    button.Checked = false;
             }
 
             chkProcessFiles.Checked = true;
@@ -218,40 +218,37 @@ namespace FileRenamer
 
         protected void btnRunScript_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog file_browser = new OpenFileDialog())
-            {
-                file_browser.Filter = "File Rename Scripts|*.txt";
+            using var file_browser = new OpenFileDialog();
 
-                // set start point
-                if (Directory.Exists(cboScriptList.Text))
-                    file_browser.InitialDirectory = cboScriptList.Text;
+            file_browser.Filter = "File Rename Scripts|*.txt";
 
-                // display selected path
-                if (file_browser.ShowDialog() == DialogResult.OK)
-                    cboScriptList.Text = file_browser.FileName;
-            }
+            // set start point
+            if (Directory.Exists(cboScriptList.Text))
+                file_browser.InitialDirectory = cboScriptList.Text;
+
+            // display selected path
+            if (file_browser.ShowDialog() == DialogResult.OK)
+                cboScriptList.Text = file_browser.FileName;
         }
 
         protected void btnSelectDirectory_Click(object sender, EventArgs e)
         {
-            using (var folder_browser = new FolderBrowserDialog())
-            {
-                folder_browser.ShowNewFolderButton = false;
-                folder_browser.Description = "Please select the directory you wish to perform file replacements in.";
+            using var folder_browser = new FolderBrowserDialog();
 
-                // set start point
-                if (Directory.Exists(cboSelectedDirectory.Text))
-                    folder_browser.SelectedPath = cboSelectedDirectory.Text;
+            folder_browser.ShowNewFolderButton = false;
 
-                // display selected path
-                if (folder_browser.ShowDialog() == DialogResult.OK)
-                    cboSelectedDirectory.Text = folder_browser.SelectedPath;
-            }
+            // set start point
+            if (Directory.Exists(cboSelectedDirectory.Text))
+                folder_browser.SelectedPath = cboSelectedDirectory.Text;
+
+            // display selected path
+            if (folder_browser.ShowDialog() == DialogResult.OK)
+                cboSelectedDirectory.Text = folder_browser.SelectedPath;
         }
 
         protected void btnAbout_Click(object sender, EventArgs e)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             sb.AppendLine(Application.ProductName + " V" + Application.ProductVersion);
             sb.AppendLine("By Roger Hill");
@@ -309,9 +306,9 @@ namespace FileRenamer
             chkCaseSensitive.Enabled = !chkUseRegex.Checked;
         }
 
-        protected void DisplayErrorMessage(string error_message)
+        protected void DisplayErrorMessage(string errorMessage)
         {
-            MessageBox.Show(error_message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         protected void DisplayErrorMessage()
@@ -349,9 +346,9 @@ namespace FileRenamer
                 input.Items.Add(item);
         }
 
-        protected void UpdateUiWithRenameResults(int objects_renamed, int error_count)
+        protected void UpdateUiWithRenameResults(int objectsRenamed, int errorCount)
         {
-            lblFilesRenamed.Text = string.Format(OBJECTS_RENAMED_LABEL, objects_renamed, error_count);
+            lblFilesRenamed.Text = string.Format(OBJECTS_RENAMED_LABEL, objectsRenamed, errorCount);
             SystemSounds.Exclamation.Play();
 
             ddlFind.Focus();
@@ -359,7 +356,7 @@ namespace FileRenamer
 
         protected void CreateToolTip(Control control, string title, string text)
         {
-            ToolTip tool_tip = new ToolTip();
+            var tool_tip = new ToolTip();
 
             tool_tip.SetToolTip(control, text);
             tool_tip.ToolTipTitle = title;
@@ -371,7 +368,7 @@ namespace FileRenamer
 
         protected Settings GetCurrentSettings()
         {
-            Settings settings = new Settings
+            var settings = new Settings
             {
                 Path = cboSelectedDirectory.Text,
                 FileTypes = cboFileTypes.Text,

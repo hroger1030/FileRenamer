@@ -1,20 +1,17 @@
-using System;
-using System.Windows.Forms;
-
 namespace FileRenamer
 {
-    public static class Program
+    internal static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+        ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        public static void Main(string[] args) 
+        static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
-            Utilities.SingleApplication.Run(new FrmMain(args), false);
+            // To customize application configuration such as set high DPI settings or default font,
+            // see https://aka.ms/applicationconfiguration.
+            ApplicationConfiguration.Initialize();
+            Application.Run(new FrmMain(args));
         }
     }
 }
